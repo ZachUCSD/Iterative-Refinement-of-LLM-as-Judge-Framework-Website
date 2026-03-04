@@ -1,25 +1,6 @@
 Iterative Refinement of LLM as Judge Framework Website
-# Abstract
-Large Language Models (LLMs) can produce coherent and informative sum-
-maries of complex lecture materials, but evaluating those summaries at scale
-raises critical issues. Human review is costly and subjective, while com-
-mon automatic metrics (e.g., ROUGE, BLEU, BERTScore) often fail to cap-
-ture deeper semantic understanding and factual consistency. To address
-this, we developed an evaluation framework that uses GPT-5 both to gen-
-erate lecture-slide summaries and to assess them using a rubric paired with
-task-based benchmarks, including coverage, faithfulness, organization, clar-
-ity, and style. We track performance through dashboards and validate align-
-ment with human standards through targeted sanity checks. Building on this
-baseline, we are expanding the system to become a more adaptive, reference-
-free evaluator. A judge module first pushes each lecture to a domain-aware
-rubric drawn from a data bank, enabling evaluation criteria, and even the
-number of refinement iterations, to vary based on lecture domain and sum-
-mary type. We also integrate a Chain-of-Density refinement stage to produce
-more comprehensive and information-dense summaries, and adjust scoring
-outputs to better reflect domain-based quality flags across iterations. Overall,
-we aim to improve the reliability and scalability of LLM-as-judge evaluation
-by combining deterministic benchmarks with domain-adaptive rubrics and
-controlled iterative refinement
+# Motivation
+Large language models (LLMs) have become commonplace in everday life. With their versatility in handing information and the sheer amount of data that LLMs are capable of producing it has become a struggle to monitor the quality of these amazing tools. LLMs are notorious for both being useful and unreliable a bizarre contradiction that we seek to solve. From hallucinations to ignoring information LLMs have a multitude of quality issues. In order to fix this issue we believe that methods to evaluate LLM outputs must be created, as a tool is only as useful as it's ability to be evaluated. To this end we have created an LLM judge framework.
 
 # Introduction
 Large language models (LLMs) are rapidly expanding what is possible in natural language
