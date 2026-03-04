@@ -1,4 +1,38 @@
-Iterative Refinement of LLM as Judge Framework Website
+# Iterative Refinement of LLM as Judge Framework Website
+<div class="button-container">
+  <a href="#motivation" class="custom-button">Motivation</a>
+  <a href="#introduction" class="custom-button">Introduction</a>
+  <a href="#methodology" class="custom-button">Methodology</a>
+  <a href="#results" class="custom-button">Results</a>
+  <a href="#conclusion" class="custom-button">Conclusion</a>
+</div>
+
+<style>
+.button-container {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 18px;
+  margin: 30px 0;
+}
+
+.custom-button {
+  padding: 12px 26px;
+  background-color: #24292e;
+  color: white;
+  text-decoration: none;
+  border-radius: 10px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  transition: all 0.2s ease-in-out;
+}
+
+.custom-button:hover {
+  background-color: #0366d6;
+  transform: translateY(-3px);
+}
+</style>
+
 # Motivation
 Large language models (LLMs) have become commonplace in everday life. With their versatility in handing information and the sheer amount of data that LLMs are capable of producing it has become a struggle to monitor the quality of these amazing tools. LLMs are notorious for both being useful and unreliable a bizarre contradiction that we seek to solve. From hallucinations to ignoring information LLMs have a multitude of quality issues. In order to fix this issue we believe that methods to evaluate LLM outputs must be created, as a tool is only as useful as it's ability to be evaluated. To this end we have created an LLM judge framework.
 
