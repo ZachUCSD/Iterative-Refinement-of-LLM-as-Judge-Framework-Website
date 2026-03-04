@@ -1,10 +1,9 @@
 # Iterative Refinement of LLM as Judge Framework Website
 <div class="button-container">
-  <a href="#motivation" class="custom-button">Motivation</a>
-  <a href="#introduction" class="custom-button">Introduction</a>
-  <a href="#methodology" class="custom-button">Methodology</a>
-  <a href="#results" class="custom-button">Results</a>
-  <a href="#conclusion" class="custom-button">Conclusion</a>
+  <a href="#motivation" class="custom-button">Paper</a>
+  <a href="#introduction" class="custom-button">Poster</a>
+  <a href="#methodology" class="custom-button">Code</a>
+  <a href="#results" class="custom-button">Website Code</a>
 </div>
 
 <style>
