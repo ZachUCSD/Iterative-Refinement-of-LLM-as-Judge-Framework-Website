@@ -2,7 +2,7 @@
 <div class="button-container">
   <a href="#motivation" class="custom-button">Paper</a>
   <a href="#introduction" class="custom-button">Poster</a>
-  <a href="#methodology" class="custom-button">Code</a>
+  <a href="https://github.com/rahul-sg/HondaResearchLabs_DSC180A-Eval-Systems-Of-NextGen-LLMs" class="custom-button">Code</a>
   <a href="#results" class="custom-button">Website Code</a>
 </div>
 
