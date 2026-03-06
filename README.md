@@ -1,8 +1,3 @@
----
-layout: single
-author_profile: false
----
-
 # Iterative Refinement of LLM as Judge Framework Website
 <div class="button-container">
   <a href="#motivation" class="custom-button">Paper</a>
