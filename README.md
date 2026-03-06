@@ -49,7 +49,7 @@ Large language models (LLMs) have become commonplace in everyday life. With thei
 
 Traditional NLP metrics like ROUGE, BLEU, and BERTScore reward surface-level similarity while missing qualities like factual grounding, semantic completeness, and practical usefulness — making them poor proxies for human judgment. This motivates our central goal: an iterative evaluation system that combines LLM-as-judge scoring with human-guided rubrics and task-based NLP metrics. Our primary stakeholders are researchers and educators who need reliable, interpretable evaluations of AI-generated summaries, and developers building LLM pipelines who require scalable quality checks without manual review. We study this through lecture slide summarization — a controllable, academically relevant domain that lets us isolate where evaluation strategies succeed or fail. Our scope is limited to the evaluation framework itself; we do not optimize or fine-tune any summarization model. Performance may vary on highly technical or out-of-distribution lecture content.
 
-# LLM Judge Evaluation Pipeline
+# Methodology
 <iframe 
   src="judge_flowchart.html" 
   width="100%" 
@@ -137,7 +137,6 @@ End-to-End Automation
 
 From the initial LLM generation to the final evaluation score, the entire workflow operates as a fully automated pipeline. No manual intervention is required, allowing the framework to scale across large evaluation datasets.
 
-# Methodology
 ## Dataset
 Our dataset consists of lecture slides from multiple UC San Diego courses, spanning data science, biology, and interdisciplinary STEM, provided in PDF format with structured content like bullet points, definitions, and equations. Unlike traditional articles, lecture slides present unique summarization challenges — they are concise, visually structured, and omit transitional language, making automated evaluation non-trivial. We extract text while preserving structural cues like slide boundaries and section headings, which feed directly into our deterministic metrics such as section coverage and glossary recall.
 
