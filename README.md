@@ -75,13 +75,13 @@ From this point forward, the output passes through the Judge pipeline, which ana
 
 The Judge is the core of the evaluation system and consists of several components that analyze the generated output.
 
-Domain-Aware Routing
+#### Domain-Aware Routing
 
 The first step is a Domain Decision module, which classifies the input and retrieves supporting context from a curated Data Bank.
 
 This allows the evaluation criteria to adapt based on the subject domain (for example, biology vs. data science), ensuring that the scoring rubric remains contextually relevant instead of relying on generic evaluation rules.
 
-Rubric-Guided Evaluation
+#### Rubric-Guided Evaluation
 
 Once the domain is identified, the summary is evaluated using a structured rubric system anchored to predefined benchmarks.
 
@@ -97,7 +97,7 @@ The system computes four primary evaluation metrics:
 
 These metrics are processed by an Evaluation Pipeline, producing structured outputs before any qualitative scoring occurs. This approach ensures that evaluation is consistent, reproducible, and explainable rather than relying purely on subjective LLM judgment.
 
-Piecewise Output Evaluation
+#### Piecewise Output Evaluation
 
 Instead of evaluating the entire output as a single block, the system breaks responses into parallel sub-components (Piecewise A/B).
 
@@ -133,7 +133,7 @@ The updated output is re-evaluated by the Judge.
 
 Unlike static evaluation systems, this process continues until the output satisfies predefined quality thresholds.
 
-End-to-End Automation
+#### End-to-End Automation
 
 From the initial LLM generation to the final evaluation score, the entire workflow operates as a fully automated pipeline. No manual intervention is required, allowing the framework to scale across large evaluation datasets.
 
