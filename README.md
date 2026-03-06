@@ -43,6 +43,19 @@ Large language models (LLMs) have become commonplace in everday life. With their
   style="border:none; border-radius:12px;">
 </iframe>
 
+Our pipeline uses a suite of hybrid tools and techniques to power the evaluation. This includes:
+
+Iterative Refinement Loop — Unlike static evaluation tools, our framework continuously re-prompts the LLM with targeted feedback, improving output quality across multiple passes rather than accepting a single response.
+Domain-Aware Routing — A dedicated Domain Decision module classifies each input and pulls relevant context from a curated Data Bank, ensuring evaluations are grounded in domain-specific knowledge rather than generic criteria.
+
+Structured Rubric System — Evaluations are anchored to benchmarks and a reference database, making scoring consistent, reproducible, and explainable rather than relying on subjective LLM judgment alone.
+
+Chain of Density Integration — We combine standard evaluation with Chain of Density prompting to progressively refine outputs for information density and semantic completeness — a technique not commonly found in existing judge frameworks.
+
+Piecewise Output Evaluation — Responses are broken into parallel sub-components (Piecewise A/B) and evaluated independently before being merged, catching localized errors that whole-output scoring would miss.
+
+End-to-End Automated Pipeline — From raw LLM output to a final scored result, the entire workflow is automated with no manual intervention required, making it scalable across large evaluation tasks.
+
 # Introduction
 Large language models (LLMs) are rapidly expanding what is possible in natural language
 processing. They can generate fluent text across a wide range of tasks, but as these systems
