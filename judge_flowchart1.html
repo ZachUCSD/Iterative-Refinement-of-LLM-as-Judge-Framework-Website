@@ -90,7 +90,7 @@
 </div>
 
 <div class="chart-wrap">
-<svg viewBox="0 0 1060 430" xmlns="http://www.w3.org/2000/svg" font-family="'IBM Plex Sans', sans-serif">
+<svg viewBox="0 0 990 580" xmlns="http://www.w3.org/2000/svg" font-family="'IBM Plex Sans', sans-serif">
   <defs>
     <marker id="a-blue" markerWidth="8" markerHeight="8" refX="7" refY="3" orient="auto">
       <path d="M0,0 L0,6 L8,3 z" fill="#58a6ff"/>
@@ -119,156 +119,148 @@
   </defs>
 
   <!-- ── JUDGE outer box ── -->
-  <rect x="160" y="20" width="820" height="390" rx="12"
+  <rect x="160" y="20" width="640" height="530" rx="12"
         fill="#1c2330" stroke="#30363d" stroke-width="1.5"/>
   <rect x="186" y="12" width="68" height="18" rx="3" fill="#1c2330"/>
   <text x="220" y="25" text-anchor="middle" font-family="'IBM Plex Mono',monospace"
         font-size="10" font-weight="600" letter-spacing="2" fill="#58a6ff">JUDGE</text>
 
-  <!-- ── SOURCE node ── -->
-  <rect x="10" y="170" width="118" height="60" rx="8"
+  <!-- ── SOURCE node (aligned with top row at y=42) ── -->
+  <rect x="10" y="42" width="118" height="52" rx="8"
         fill="url(#g-blue)" stroke="#58a6ff" stroke-width="1.5"/>
-  <text x="69" y="196" text-anchor="middle" font-size="12" font-weight="500" fill="#e6edf3">Output from</text>
-  <text x="69" y="212" text-anchor="middle" font-size="12" font-weight="500" fill="#e6edf3">an LLM</text>
-  <text x="69" y="225" text-anchor="middle" font-family="'IBM Plex Mono',monospace" font-size="8" fill="#8b949e" letter-spacing="1">SOURCE</text>
+  <text x="69" y="65" text-anchor="middle" font-size="12" font-weight="500" fill="#e6edf3">Output from</text>
+  <text x="69" y="81" text-anchor="middle" font-size="12" font-weight="500" fill="#e6edf3">an LLM</text>
+  <text x="69" y="94" text-anchor="middle" font-family="'IBM Plex Mono',monospace" font-size="8" fill="#8b949e" letter-spacing="1">SOURCE</text>
 
-  <!-- Source → inside judge (goes to inner Input node) -->
-  <line x1="128" y1="200" x2="175" y2="200" stroke="#58a6ff" stroke-width="2"/>
-  <path d="M 175 200 L 248 200 L 248 90" stroke="#58a6ff" stroke-width="1.8" fill="none" marker-end="url(#a-blue)"/>
+  <!-- Source → Input: straight horizontal arrow at y=68 -->
+  <line x1="128" y1="68" x2="188" y2="68" stroke="#58a6ff" stroke-width="2" marker-end="url(#a-blue)"/>
 
-  <!-- ── TOP ROW: Input → Domain Decision ↔ Data Bank ── -->
+  <!-- ══ ROW 1: Input → Domain Decision ↔ Data Bank ══ -->
   <!-- Input node -->
-  <rect x="196" y="42" width="104" height="48" rx="7" fill="#161b22" stroke="#30363d" stroke-width="1.2"/>
-  <text x="248" y="63" text-anchor="middle" font-size="12" font-weight="500" fill="#e6edf3">Input</text>
-  <text x="248" y="80" text-anchor="middle" font-family="'IBM Plex Mono',monospace" font-size="8" fill="#8b949e" letter-spacing="1">ENTRY</text>
+  <rect x="190" y="42" width="104" height="52" rx="7" fill="#161b22" stroke="#30363d" stroke-width="1.2"/>
+  <text x="242" y="65" text-anchor="middle" font-size="12" font-weight="500" fill="#e6edf3">Input</text>
+  <text x="242" y="82" text-anchor="middle" font-family="'IBM Plex Mono',monospace" font-size="8" fill="#8b949e" letter-spacing="1">ENTRY</text>
 
   <!-- Input → Domain Decision -->
-  <line x1="300" y1="66" x2="332" y2="66" stroke="#8b949e" stroke-width="1.5" marker-end="url(#a-muted)"/>
+  <line x1="294" y1="68" x2="326" y2="68" stroke="#8b949e" stroke-width="1.5" marker-end="url(#a-muted)"/>
 
   <!-- Domain Decision node -->
-  <rect x="332" y="36" width="150" height="60" rx="7" fill="#161b22" stroke="#d2a8ff" stroke-width="1.2"/>
-  <text x="407" y="61" text-anchor="middle" font-size="12" font-weight="500" fill="#e6edf3">Domain Decision</text>
-  <text x="407" y="78" text-anchor="middle" font-family="'IBM Plex Mono',monospace" font-size="8" fill="#8b949e" letter-spacing="1">ROUTER</text>
+  <rect x="326" y="42" width="148" height="52" rx="7" fill="#161b22" stroke="#d2a8ff" stroke-width="1.2"/>
+  <text x="400" y="65" text-anchor="middle" font-size="12" font-weight="500" fill="#e6edf3">Domain Decision</text>
+  <text x="400" y="82" text-anchor="middle" font-family="'IBM Plex Mono',monospace" font-size="8" fill="#8b949e" letter-spacing="1">ROUTER</text>
 
-  <!-- Domain Decision ↔ Data Bank -->
-  <line x1="482" y1="58" x2="538" y2="58" stroke="#8b949e" stroke-width="1.5" marker-end="url(#a-muted)"/>
-  <line x1="538" y1="70" x2="482" y2="70" stroke="#8b949e" stroke-width="1.5" marker-end="url(#a-muted-rev)"/>
+  <!-- Domain Decision ↔ Data Bank (top=right, bottom=left) -->
+  <line x1="474" y1="60" x2="518" y2="60" stroke="#8b949e" stroke-width="1.5" marker-end="url(#a-muted)"/>
+  <line x1="518" y1="76" x2="474" y2="76" stroke="#8b949e" stroke-width="1.5" marker-end="url(#a-muted)"/>
 
   <!-- Data Bank node -->
-  <rect x="538" y="36" width="130" height="60" rx="7" fill="#161b22" stroke="#d2a8ff" stroke-width="1.2"/>
-  <text x="603" y="61" text-anchor="middle" font-size="12" font-weight="500" fill="#e6edf3">Data Bank</text>
-  <text x="603" y="78" text-anchor="middle" font-family="'IBM Plex Mono',monospace" font-size="8" fill="#8b949e" letter-spacing="1">KNOWLEDGE</text>
+  <rect x="518" y="42" width="126" height="52" rx="7" fill="#161b22" stroke="#d2a8ff" stroke-width="1.2"/>
+  <text x="581" y="65" text-anchor="middle" font-size="12" font-weight="500" fill="#e6edf3">Data Bank</text>
+  <text x="581" y="82" text-anchor="middle" font-family="'IBM Plex Mono',monospace" font-size="8" fill="#8b949e" letter-spacing="1">KNOWLEDGE</text>
 
   <!-- Domain Decision → down to Rubric -->
-  <line x1="407" y1="96" x2="407" y2="128" stroke="#8b949e" stroke-width="1.5" marker-end="url(#a-muted)"/>
+  <line x1="400" y1="94" x2="400" y2="128" stroke="#8b949e" stroke-width="1.5" marker-end="url(#a-muted)"/>
 
-  <!-- ── RUBRIC box ── -->
-  <rect x="188" y="128" width="666" height="150" rx="8"
+  <!-- ══ RUBRIC BOX ══ -->
+  <rect x="175" y="128" width="610" height="148" rx="8"
         fill="none" stroke="#30363d" stroke-width="1.2" stroke-dasharray="6 3"/>
-  <rect x="208" y="121" width="58" height="16" rx="3" fill="#1c2330"/>
-  <text x="237" y="133" text-anchor="middle" font-family="'IBM Plex Mono',monospace"
+  <rect x="195" y="121" width="58" height="16" rx="3" fill="#1c2330"/>
+  <text x="224" y="133" text-anchor="middle" font-family="'IBM Plex Mono',monospace"
         font-size="9" font-weight="600" letter-spacing="1.5" fill="#8b949e">RUBRIC</text>
 
   <!-- Benchmarks node -->
-  <rect x="202" y="148" width="118" height="40" rx="6" fill="#161b22" stroke="#6e40c9" stroke-width="1.2"/>
-  <text x="261" y="165" text-anchor="middle" font-size="11" font-weight="500" fill="#e6edf3">Benchmarks</text>
-  <rect x="278" y="170" width="28" height="12" rx="3" fill="#6e40c922" stroke="#6e40c966" stroke-width="0.8"/>
-  <text x="292" y="179.5" text-anchor="middle" font-family="'IBM Plex Mono',monospace" font-size="7.5" fill="#d2a8ff">REF</text>
+  <rect x="188" y="148" width="118" height="40" rx="6" fill="#161b22" stroke="#6e40c9" stroke-width="1.2"/>
+  <text x="247" y="165" text-anchor="middle" font-size="11" font-weight="500" fill="#e6edf3">Benchmarks</text>
+  <rect x="262" y="170" width="28" height="12" rx="3" fill="#6e40c922" stroke="#6e40c966" stroke-width="0.8"/>
+  <text x="276" y="179.5" text-anchor="middle" font-family="'IBM Plex Mono',monospace" font-size="7.5" fill="#d2a8ff">REF</text>
 
-  <!-- Database node -->
-  <rect x="202" y="206" width="118" height="40" rx="6" fill="#161b22" stroke="#6e40c9" stroke-width="1.2"/>
-  <text x="261" y="222" text-anchor="middle" font-size="11" font-weight="500" fill="#e6edf3">Context Information</text>
-  <rect x="270" y="228" width="34" height="12" rx="3" fill="#6e40c922" stroke="#6e40c966" stroke-width="0.8"/>
-  <text x="287" y="237.5" text-anchor="middle" font-family="'IBM Plex Mono',monospace" font-size="7.5" fill="#d2a8ff">DATA</text>
+  <!-- Context Information node -->
+  <rect x="188" y="208" width="118" height="52" rx="6" fill="#161b22" stroke="#6e40c9" stroke-width="1.2"/>
+  <text x="247" y="230" text-anchor="middle" font-size="10.5" font-weight="500" fill="#e6edf3">Context</text>
+  <text x="247" y="245" text-anchor="middle" font-size="10.5" font-weight="500" fill="#e6edf3">Information</text>
+  <rect x="226" y="252" width="42" height="12" rx="3" fill="#6e40c922" stroke="#6e40c966" stroke-width="0.8"/>
+  <text x="247" y="261.5" text-anchor="middle" font-family="'IBM Plex Mono',monospace" font-size="7.5" fill="#d2a8ff">CONTEXT</text>
 
-  <!-- Benchmarks/DB → Eval Pipeline (fork lines) -->
-  <line x1="320" y1="168" x2="358" y2="200" stroke="#8b949e" stroke-width="1.5" marker-end="url(#a-muted)"/>
-  <line x1="320" y1="226" x2="354" y2="208" stroke="#8b949e" stroke-width="1.5"/>
+  <!-- Benchmarks/Context → Eval Pipeline -->
+  <line x1="306" y1="168" x2="342" y2="192" stroke="#8b949e" stroke-width="1.5" marker-end="url(#a-muted)"/>
+  <line x1="306" y1="234" x2="338" y2="206" stroke="#8b949e" stroke-width="1.5"/>
 
   <!-- Evaluation Pipeline node -->
-  <rect x="358" y="175" width="152" height="58" rx="7" fill="#161b22" stroke="#8b949e" stroke-width="1.2"/>
-  <text x="434" y="199" text-anchor="middle" font-size="12" font-weight="500" fill="#e6edf3">Evaluation</text>
-  <text x="434" y="215" text-anchor="middle" font-size="12" font-weight="500" fill="#e6edf3">Pipeline</text>
-  <text x="434" y="228" text-anchor="middle" font-family="'IBM Plex Mono',monospace" font-size="8" fill="#8b949e" letter-spacing="1">PROCESSING</text>
+  <rect x="342" y="168" width="148" height="68" rx="7" fill="#161b22" stroke="#8b949e" stroke-width="1.2"/>
+  <text x="416" y="197" text-anchor="middle" font-size="12" font-weight="500" fill="#e6edf3">Evaluation</text>
+  <text x="416" y="213" text-anchor="middle" font-size="12" font-weight="500" fill="#e6edf3">Pipeline</text>
+  <text x="416" y="228" text-anchor="middle" font-family="'IBM Plex Mono',monospace" font-size="8" fill="#8b949e" letter-spacing="1">PROCESSING</text>
 
   <!-- Eval Pipeline → Eval+CoD -->
-  <line x1="510" y1="204" x2="542" y2="204" stroke="#58a6ff" stroke-width="1.8" marker-end="url(#a-blue)"/>
+  <line x1="490" y1="202" x2="518" y2="202" stroke="#58a6ff" stroke-width="1.8" marker-end="url(#a-blue)"/>
 
   <!-- Eval + Chain of Density node -->
-  <rect x="542" y="162" width="180" height="78" rx="7"
+  <rect x="518" y="158" width="252" height="88" rx="7"
         fill="url(#g-blue)" stroke="#58a6ff" stroke-width="1.5"/>
-  <rect x="542" y="162" width="180" height="78" rx="7"
+  <rect x="518" y="158" width="252" height="88" rx="7"
         fill="none" stroke="#58a6ff" stroke-width="3" opacity="0.1"/>
-  <text x="632" y="191" text-anchor="middle" font-size="12" font-weight="500" fill="#e6edf3">Evaluation +</text>
-  <text x="632" y="207" text-anchor="middle" font-size="12" font-weight="500" fill="#e6edf3">Chain of Density</text>
-  <rect x="607" y="216" width="50" height="14" rx="4" fill="#1f6feb44" stroke="#1f6feb66" stroke-width="0.8"/>
-  <text x="632" y="226" text-anchor="middle" font-family="'IBM Plex Mono',monospace" font-size="8" fill="#58a6ff">CORE</text>
+  <text x="644" y="193" text-anchor="middle" font-size="12" font-weight="500" fill="#e6edf3">Evaluation +</text>
+  <text x="644" y="210" text-anchor="middle" font-size="12" font-weight="500" fill="#e6edf3">Chain of Density</text>
+  <rect x="619" y="220" width="50" height="14" rx="4" fill="#1f6feb44" stroke="#1f6feb66" stroke-width="0.8"/>
+  <text x="644" y="230" text-anchor="middle" font-family="'IBM Plex Mono',monospace" font-size="8" fill="#58a6ff">CORE</text>
 
-  <!-- ── BOTTOM ROW ── -->
+  <!-- ══ BOTTOM ROW: New Prompt → Piecewise A/B → New Output ══ -->
   <!-- New Prompt to LLM -->
-  <rect x="196" y="296" width="124" height="64" rx="7" fill="#161b22" stroke="#8b949e" stroke-width="1.2"/>
-  <text x="258" y="320" text-anchor="middle" font-size="11" font-weight="500" fill="#e6edf3">New Prompt</text>
-  <text x="258" y="336" text-anchor="middle" font-size="11" font-weight="500" fill="#e6edf3">to LLM</text>
-  <text x="258" y="352" text-anchor="middle" font-family="'IBM Plex Mono',monospace" font-size="8" fill="#8b949e" letter-spacing="1">RETRY</text>
+  <rect x="188" y="350" width="124" height="64" rx="7" fill="#161b22" stroke="#8b949e" stroke-width="1.2"/>
+  <text x="250" y="375" text-anchor="middle" font-size="11" font-weight="500" fill="#e6edf3">New Prompt</text>
+  <text x="250" y="391" text-anchor="middle" font-size="11" font-weight="500" fill="#e6edf3">to LLM</text>
+  <text x="250" y="407" text-anchor="middle" font-family="'IBM Plex Mono',monospace" font-size="8" fill="#8b949e" letter-spacing="1">RETRY</text>
 
   <!-- Fork: New Prompt → Piecewise A and B -->
-  <line x1="320" y1="328" x2="352" y2="328" stroke="#8b949e" stroke-width="1.5"/>
-  <line x1="352" y1="328" x2="352" y2="302" stroke="#8b949e" stroke-width="1.5"/>
-  <line x1="352" y1="302" x2="378" y2="302" stroke="#8b949e" stroke-width="1.5" marker-end="url(#a-muted)"/>
-  <line x1="352" y1="328" x2="352" y2="354" stroke="#8b949e" stroke-width="1.5"/>
-  <line x1="352" y1="354" x2="378" y2="354" stroke="#8b949e" stroke-width="1.5" marker-end="url(#a-muted)"/>
+  <line x1="312" y1="382" x2="344" y2="382" stroke="#8b949e" stroke-width="1.5"/>
+  <line x1="344" y1="382" x2="344" y2="358" stroke="#8b949e" stroke-width="1.5"/>
+  <line x1="344" y1="358" x2="368" y2="358" stroke="#8b949e" stroke-width="1.5" marker-end="url(#a-muted)"/>
+  <line x1="344" y1="382" x2="344" y2="406" stroke="#8b949e" stroke-width="1.5"/>
+  <line x1="344" y1="406" x2="368" y2="406" stroke="#8b949e" stroke-width="1.5" marker-end="url(#a-muted)"/>
 
   <!-- Piecewise A -->
-  <rect x="378" y="284" width="122" height="36" rx="6" fill="url(#g-orange)" stroke="#f78166" stroke-width="1.2"/>
-  <text x="439" y="307" text-anchor="middle" font-size="11" font-weight="500" fill="#e6edf3">Piecewise A</text>
+  <rect x="368" y="340" width="122" height="36" rx="6" fill="url(#g-orange)" stroke="#f78166" stroke-width="1.2"/>
+  <text x="429" y="363" text-anchor="middle" font-size="11" font-weight="500" fill="#e6edf3">Piecewise A</text>
 
   <!-- Piecewise B -->
-  <rect x="378" y="336" width="122" height="36" rx="6" fill="url(#g-orange)" stroke="#f78166" stroke-width="1.2"/>
-  <text x="439" y="359" text-anchor="middle" font-size="11" font-weight="500" fill="#e6edf3">Piecewise B</text>
+  <rect x="368" y="388" width="122" height="36" rx="6" fill="url(#g-orange)" stroke="#f78166" stroke-width="1.2"/>
+  <text x="429" y="411" text-anchor="middle" font-size="11" font-weight="500" fill="#e6edf3">Piecewise B</text>
 
   <!-- Merge: A+B → New Output -->
-  <line x1="500" y1="302" x2="534" y2="302" stroke="#8b949e" stroke-width="1.5"/>
-  <line x1="534" y1="302" x2="534" y2="328" stroke="#8b949e" stroke-width="1.5"/>
-  <line x1="500" y1="354" x2="534" y2="354" stroke="#8b949e" stroke-width="1.5"/>
-  <line x1="534" y1="354" x2="534" y2="328" stroke="#8b949e" stroke-width="1.5"/>
-  <line x1="534" y1="328" x2="560" y2="328" stroke="#8b949e" stroke-width="1.5" marker-end="url(#a-muted)"/>
+  <line x1="490" y1="358" x2="522" y2="358" stroke="#8b949e" stroke-width="1.5"/>
+  <line x1="522" y1="358" x2="522" y2="382" stroke="#8b949e" stroke-width="1.5"/>
+  <line x1="490" y1="406" x2="522" y2="406" stroke="#8b949e" stroke-width="1.5"/>
+  <line x1="522" y1="406" x2="522" y2="382" stroke="#8b949e" stroke-width="1.5"/>
+  <line x1="522" y1="382" x2="548" y2="382" stroke="#8b949e" stroke-width="1.5" marker-end="url(#a-muted)"/>
 
   <!-- New Output node -->
-  <rect x="560" y="300" width="122" height="56" rx="7" fill="#161b22" stroke="#8b949e" stroke-width="1.2"/>
-  <text x="621" y="325" text-anchor="middle" font-size="11" font-weight="500" fill="#e6edf3">New Output</text>
-  <text x="621" y="342" text-anchor="middle" font-family="'IBM Plex Mono',monospace" font-size="8" fill="#8b949e" letter-spacing="1">GENERATED</text>
+  <rect x="548" y="354" width="122" height="56" rx="7" fill="#161b22" stroke="#8b949e" stroke-width="1.2"/>
+  <text x="609" y="379" text-anchor="middle" font-size="11" font-weight="500" fill="#e6edf3">New Output</text>
+  <text x="609" y="397" text-anchor="middle" font-family="'IBM Plex Mono',monospace" font-size="8" fill="#8b949e" letter-spacing="1">GENERATED</text>
 
-  <!-- Curved feedback: New Output ↑ → Eval+CoD (dashed blue) -->
-  <path d="M 682 300 C 682 260 660 242 632 240" stroke="#58a6ff" stroke-width="1.8"
+  <!-- Curved feedback: New Output ↑ → Eval+CoD -->
+  <path d="M 670 354 C 670 310 660 260 644 246" stroke="#58a6ff" stroke-width="1.8"
         fill="none" stroke-dasharray="5 3" marker-end="url(#a-blue)" opacity="0.85"/>
 
-  <!-- Curved feedback: Benchmarks/DB ← New Prompt (dashed muted) -->
-  <path d="M 202 296 C 202 270 228 258 262 258 C 296 258 322 248 336 238"
+  <!-- Curved feedback: New Prompt ← Rubric area -->
+  <path d="M 188 382 C 168 382 168 202 247 202 C 300 202 320 192 340 185"
         stroke="#8b949e" stroke-width="1.4" fill="none" stroke-dasharray="4 3"
         marker-end="url(#a-muted)" opacity="0.55"/>
 
-  <!-- ── Eval+CoD → right wall → Final Output ── -->
-  <line x1="722" y1="201" x2="908" y2="201" stroke="#3fb950" stroke-width="1.8" marker-end="url(#a-green)"/>
+  <!-- Source node connects into judge at row 1 via vertical path (already drawn above) -->
+  <!-- The source node is at y=260-320, connects horizontally then up to Input at y=42-94 -->
 
-  <!-- ── FINAL OUTPUT node ── -->
-  <rect x="908" y="162" width="58" height="80" rx="8"
+  <!-- ── Eval+CoD → Final Output (right side) ── -->
+  <line x1="770" y1="202" x2="848" y2="202" stroke="#3fb950" stroke-width="1.8" marker-end="url(#a-green)"/>
+
+  <!-- ── FINAL OUTPUT node (outside judge box) ── -->
+  <rect x="854" y="162" width="120" height="80" rx="8"
         fill="url(#g-green)" stroke="#3fb950" stroke-width="1.5"/>
-  <rect x="908" y="162" width="58" height="80" rx="8"
+  <rect x="854" y="162" width="120" height="80" rx="8"
         fill="none" stroke="#3fb950" stroke-width="3" opacity="0.1"/>
-  <text x="937" y="189" text-anchor="middle" font-size="10.5" font-weight="500" fill="#e6edf3">Eval +</text>
-  <text x="937" y="204" text-anchor="middle" font-size="10.5" font-weight="500" fill="#e6edf3">Final</text>
-  <text x="937" y="219" text-anchor="middle" font-size="10.5" font-weight="500" fill="#e6edf3">Output</text>
-  <text x="937" y="232" text-anchor="middle" font-family="'IBM Plex Mono',monospace" font-size="7.5" fill="#8b949e" letter-spacing="1">RESULT</text>
-
-  <!-- Final Output → outside arrow -->
-  <!-- <line x1="966" y1="202" x2="998" y2="202" stroke="#3fb950" stroke-width="2" marker-end="url(#a-green)"/> -->
-
-  <!-- Outside result node -->
-  <!-- <rect x="998" y="170" width="52" height="64" rx="8"
-        fill="url(#g-green)" stroke="#3fb950" stroke-width="1.5"/>
-  <text x="1024" y="196" text-anchor="middle" font-size="10" font-weight="500" fill="#e6edf3">Eval +</text>
-  <text x="1024" y="210" text-anchor="middle" font-size="10" font-weight="500" fill="#e6edf3">Final</text>
-  <text x="1024" y="224" text-anchor="middle" font-size="10" font-weight="500" fill="#e6edf3">Output</text> -->
+  <text x="914" y="193" text-anchor="middle" font-size="11" font-weight="500" fill="#e6edf3">Evaluation +</text>
+  <text x="914" y="209" text-anchor="middle" font-size="11" font-weight="500" fill="#e6edf3">Final Output</text>
+  <text x="914" y="233" text-anchor="middle" font-family="'IBM Plex Mono',monospace" font-size="8" fill="#8b949e" letter-spacing="1">RESULT</text>
 
 </svg>
 </div>
