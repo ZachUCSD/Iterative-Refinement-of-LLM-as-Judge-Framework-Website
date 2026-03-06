@@ -38,12 +38,6 @@ Large language models (LLMs) have become commonplace in everday life. With their
 Traditional NLP metrics like ROUGE, BLEU, and BERTScore are useful but fall short — they reward surface-level similarity while missing qualities like factual grounding, semantic completeness, and practical usefulness. This motivates our central goal: an iterative evaluation system that combines LLM-as-judge scoring with human-guided rubrics and task-based NLP metrics to produce an evaluator that aligns closely with human judgment. We study this through lecture slide summarization, a controllable and personally relevant domain that lets us isolate where different evaluation strategies succeed or fail. Our focus is not on optimizing summarization itself, but on designing a framework that can meaningfully assess a wide range of generated outputs. To achieve this, we pair rubric-based judging with deterministic task-based checks, domain-aware criteria, and an iterative refinement loop that targets weaknesses across evaluation passes.
 
 # Why our project is unique?
-<iframe 
-  src="judge_flowchart1.html" 
-  width="100%" 
-  height="600" 
-  style="border:none; border-radius:12px;">
-</iframe>
 
 Our pipeline uses a suite of hybrid tools and techniques to power the evaluation. This includes:
 
@@ -59,6 +53,13 @@ Piecewise Output Evaluation — Responses are broken into parallel sub-component
 
 End-to-End Automated Pipeline — From raw LLM output to a final scored result, the entire workflow is automated with no manual intervention required, making it scalable across large evaluation tasks.
 
+# Roadmap 
+<iframe 
+  src="judge_flowchart1.html" 
+  width="100%" 
+  height="600" 
+  style="border:none; border-radius:12px;">
+</iframe>
 
 # Methodology
 ## Dataset
