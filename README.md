@@ -35,6 +35,8 @@
 # Motivation
 Large language models (LLMs) have become commonplace in everday life. With their versatility in handing information and the sheer amount of data that LLMs are capable of producing it has become a struggle to monitor the quality of these amazing tools. LLMs are notorious for both being useful and unreliable a bizarre contradiction that we seek to solve. From hallucinations to ignoring information LLMs have a multitude of quality issues. In order to fix this issue we believe that methods to evaluate LLM outputs must be created, as a tool is only as useful as it's ability to be evaluated. To this end we have created an LLM judge framework.
 
+Traditional NLP metrics like ROUGE, BLEU, and BERTScore are useful but fall short — they reward surface-level similarity while missing qualities like factual grounding, semantic completeness, and practical usefulness. This motivates our central goal: an iterative evaluation system that combines LLM-as-judge scoring with human-guided rubrics and task-based NLP metrics to produce an evaluator that aligns closely with human judgment. We study this through lecture slide summarization, a controllable and personally relevant domain that lets us isolate where different evaluation strategies succeed or fail. Our focus is not on optimizing summarization itself, but on designing a framework that can meaningfully assess a wide range of generated outputs. To achieve this, we pair rubric-based judging with deterministic task-based checks, domain-aware criteria, and an iterative refinement loop that targets weaknesses across evaluation passes.
+
 # Why our project is unique?
 <iframe 
   src="judge_flowchart1.html" 
@@ -46,6 +48,7 @@ Large language models (LLMs) have become commonplace in everday life. With their
 Our pipeline uses a suite of hybrid tools and techniques to power the evaluation. This includes:
 
 Iterative Refinement Loop — Unlike static evaluation tools, our framework continuously re-prompts the LLM with targeted feedback, improving output quality across multiple passes rather than accepting a single response.
+
 Domain-Aware Routing — A dedicated Domain Decision module classifies each input and pulls relevant context from a curated Data Bank, ensuring evaluations are grounded in domain-specific knowledge rather than generic criteria.
 
 Structured Rubric System — Evaluations are anchored to benchmarks and a reference database, making scoring consistent, reproducible, and explainable rather than relying on subjective LLM judgment alone.
@@ -56,35 +59,6 @@ Piecewise Output Evaluation — Responses are broken into parallel sub-component
 
 End-to-End Automated Pipeline — From raw LLM output to a final scored result, the entire workflow is automated with no manual intervention required, making it scalable across large evaluation tasks.
 
-# Introduction
-Large language models (LLMs) are rapidly expanding what is possible in natural language
-processing. They can generate fluent text across a wide range of tasks, but as these systems
-become more advanced, evaluating their outputs in a way that is systematic, meaningful,
-and interpretable becomes increasingly difficult. Traditional NLP metrics such as ROUGE,
-BLEU, METEOR, and embedding-based measures like BERTScore can be useful quality indi-
-cators, but they often overvalue similarity and fail to capture practical relevance. Important
-qualities like factual grounding, semantic completeness, domain-appropriate structure, and
-overall usefulness to human readers are not reflected through a calculated score. This mo-
-tivates the central goal of our project, which is to build an iterative evaluation system that
-combines LLM-as-judge scoring with human-guided rubrics and task-based NLP metrics to
-produce a scalable evaluator that aligns closely with human judgment. We study this prob-
-lem through lecture slide summarization. Lecture slides are a controllable input, which
-makes it possible to compare evaluation strategies consistently and to isolate where differ-
-ent methods succeed or fail. It is also a very relevant metric to us as students in academia.
-Our objective is not to optimize summarization, but to design an evaluation framework
-that can meaningfully assess a wide range of generated outputs. In particular, we focus
-on LLM-as-judge evaluation, where an LLM is prompted with a rubric to assess another
-model’s summary. This approach is flexible and scalable, but is also sensitive to prompt
-design and criteria definition. To make LLM-as-judge evaluation more reliable, we pair
-rubric-based judging with task-based checks that provide more deterministic signals, such
-as coverage and grounding measures. We also move beyond static rubrics by introducing
-domain-aware criteria that reflect what different types of lectures value. Instead of forcing
-the same dimensions onto every summary, our evaluator selects from a structured bank of
-domain rubrics so that the scoring dimensions and feedback are better aligned with the con-
-tent. Finally, we incorporate an iterative refinement process that uses evaluation feedback
-to target weaknesses in a summary and improve it across iterations. Together, these com-
-ponents aim to support evaluation that is scalable, better grounded in the source material,
-and more aligned with human standards across diverse lecture domains.
 
 # Methodology
 ## Dataset
