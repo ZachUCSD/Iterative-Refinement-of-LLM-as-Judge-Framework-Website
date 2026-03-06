@@ -35,6 +35,14 @@
 # Motivation
 Large language models (LLMs) have become commonplace in everday life. With their versatility in handing information and the sheer amount of data that LLMs are capable of producing it has become a struggle to monitor the quality of these amazing tools. LLMs are notorious for both being useful and unreliable a bizarre contradiction that we seek to solve. From hallucinations to ignoring information LLMs have a multitude of quality issues. In order to fix this issue we believe that methods to evaluate LLM outputs must be created, as a tool is only as useful as it's ability to be evaluated. To this end we have created an LLM judge framework.
 
+# Why our project is unique?
+<iframe 
+  src="judge_flowchart.html" 
+  width="100%" 
+  height="520" 
+  style="border:none; border-radius:12px;">
+</iframe>
+
 # Introduction
 Large language models (LLMs) are rapidly expanding what is possible in natural language
 processing. They can generate fluent text across a wide range of tasks, but as these systems
