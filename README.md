@@ -75,13 +75,7 @@ End-to-End Automated Pipeline — From raw LLM output to a final scored result, 
 
 # Methodology
 ## Dataset
-The dataset used in our experiments consists of lecture slides collected from multiple courses at the University of California, San Diego (UCSD). These slides span diverse subject areas, including data science, biology, and interdisciplinary STEM courses, allowing us to evaluate summarization performance across varied technical domains, writing styles, and content structures.
-
-Each lecture is provided in PDF format and contains structured educational content such as section titles, bullet points, definitions, diagrams, equations, and occasionally code snippets. Because lecture slides are typically concise, visually structured, and not written in full prose, they present unique challenges for automated summarization. Unlike traditional articles, slides often omit transitional language, rely heavily on formatting cues, and distribute key concepts across multiple short fragments.
-
-To prepare the data for summarization and evaluation, we extract textual content from the slides while preserving structural cues such as slide boundaries and section headings. These structural elements are later used in our deterministic metrics (e.g., section coverage, glossary recall) to evaluate how well generated summaries capture the core topics of each lecture.
-
-The diversity of subject matter and formatting styles in this dataset allows us to test the robustness, faithfulness, and generalization ability of our LLM-based summarization and evaluation pipeline.
+Our dataset consists of lecture slides from multiple UC San Diego courses, spanning data science, biology, and interdisciplinary STEM, provided in PDF format with structured content like bullet points, definitions, and equations. Unlike traditional articles, lecture slides present unique summarization challenges — they are concise, visually structured, and omit transitional language, making automated evaluation non-trivial. We extract text while preserving structural cues like slide boundaries and section headings, which feed directly into our deterministic metrics such as section coverage and glossary recall.
 
 ## Pipeline
 ### 1. Initial Generation
