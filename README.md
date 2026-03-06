@@ -65,10 +65,6 @@ Piecewise Output Evaluation — Responses are broken into parallel sub-component
 
 End-to-End Automated Pipeline — From raw LLM output to a final scored result, the entire workflow is automated with no manual intervention required, making it scalable across large evaluation tasks.
 
-Honest Scope — Our framework evaluates summaries; it does not improve the underlying summarization model. Gains in output quality come entirely from iterative re-prompting within the evaluation loop, not from model fine-tuning.
-
-Known Limitations — LLM-as-judge scoring is sensitive to prompt design and can reflect biases in the judge model. Our domain rubric bank is also bounded by the domains we defined, so performance on out-of-distribution lecture types may degrade.
-
 # Roadmap 
 <iframe 
   src="judge_flowchart1.html" 
@@ -134,5 +130,13 @@ If weaknesses are detected:
 This loop continues until quality thresholds are met.
 
 # Results
+
+
+# Scope & Limitations
+
+Honest Scope — Our framework evaluates summaries; it does not improve the underlying summarization model. Gains in output quality come entirely from iterative re-prompting within the evaluation loop, not from model fine-tuning.
+
+Known Limitations — LLM-as-judge scoring is sensitive to prompt design and can reflect biases in the judge model. Our domain rubric bank is also bounded by the domains we defined, so performance on out-of-distribution lecture types may degrade.
+
 
 # Conclusion
