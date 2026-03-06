@@ -10,7 +10,7 @@ font-size:13px; line-height:2; z-index:999;">
 </div>
 
 
-# Iterative Refinement of LLM as Judge Framework Website
+
 <div class="button-container">
   <a href="#motivation" class="custom-button">Paper</a>
   <a href="#introduction" class="custom-button">Poster</a>
