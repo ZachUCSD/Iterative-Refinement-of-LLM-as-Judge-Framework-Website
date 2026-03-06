@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Judge Evaluation Pipeline</title>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0d1117;
+    --surface: #161b22;
+    --surface2: #1c2330;
+    --border: #30363d;
+    --accent: #58a6ff;
+    --accent2: #3fb950;
+    --accent3: #f78166;
+    --accent4: #d2a8ff;
+    --text: #e6edf3;
+    --text-muted: #8b949e;
+    --highlight: #1f6feb33;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'IBM Plex Sans', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 20px;
+  }
+
+  .title-block {
+    text-align: center;
+    margin-bottom: 40px;
+  }
+
+  .title-block h1 {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+
+  .title-block h2 {
+    font-size: 28px;
+    font-weight: 600;
+    color: var(--text);
+    letter-spacing: -0.02em;
+  }
+
+  .diagram {
+    width: 100%;
+    max-width: 1100px;
+    display: flex;
+    align-items: center;
+    gap: 0;
+    position: relative;
+  }
+
+  /* ── Nodes ── */
+  .node {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 14px 18px;
+    font-size: 13px;
+    font-weight: 500;
+    text-align: center;
+    position: relative;
+    white-space: nowrap;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    line-height: 1.4;
+  }
+
+  .node:hover {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 1px var(--accent), 0 4px 20px #58a6ff22;
+  }
+
+  .node.input-node {
+    border-color: var(--accent);
+    background: linear-gradient(135deg, #161b22 0%, #1a2332 100%);
+    min-width: 130px;
+  }
+
+  .node.output-node {
+    border-color: var(--accent2);
+    background: linear-gradient(135deg, #161b22 0%, #162318 100%);
+    min-width: 120px;
+    box-shadow: 0 0 0 1px #3fb95022, 0 4px 24px #3fb95011;
+  }
+
+  .node.domain { border-color: var(--accent4); }
+  .node.databank { border-color: var(--accent4); }
+  .node.eval-chain {
+    border-color: var(--accent);
+    background: linear-gradient(135deg, #161b22 0%, #1a2332 100%);
+    box-shadow: 0 0 0 1px #58a6ff22;
+  }
+
+  .node .label-sub {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    color: var(--text-muted);
+    margin-top: 3px;
+    letter-spacing: 0.05em;
+  }
+
+  .badge {
+    position: absolute;
+    top: -8px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--accent4);
+    color: #0d1117;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    padding: 2px 8px;
+    border-radius: 99px;
+    white-space: nowrap;
+  }
+
+  /* ── Arrows ── */
+  .arrow {
+    display: flex;
+    align-items: center;
+    color: var(--text-muted);
+    flex-shrink: 0;
+  }
+
+  .arrow svg {
+    width: 28px;
+    height: 16px;
+    overflow: visible;
+  }
+
+  /* ── Judge container ── */
+  .judge-box {
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    background: var(--surface2);
+    padding: 28px 24px 24px;
+    position: relative;
+    flex: 1;
+  }
+
+  .judge-label {
+    position: absolute;
+    top: -13px;
+    left: 24px;
+    background: var(--surface2);
+    padding: 0 10px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    color: var(--accent);
+    text-transform: uppercase;
+  }
+
+  /* ── Rubric container ── */
+  .rubric-box {
+    border: 1px dashed #30363d;
+    border-radius: 8px;
+    padding: 20px 18px 18px;
+    position: relative;
+    margin-bottom: 20px;
+  }
+
+  .rubric-label {
+    position: absolute;
+    top: -10px;
+    left: 14px;
+    background: var(--surface2);
+    padding: 0 8px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    color: var(--text-muted);
+    text-transform: uppercase;
+  }
+
+  /* ── Row layouts ── */
+  .row {
+    display: flex;
+    align-items: center;
+    gap: 0;
+  }
+
+  .col {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    align-items: center;
+  }
+
+  .spacer { flex: 1; }
+
+  /* SVG arrows inline */
+  .h-arrow {
+    width: 36px;
+    height: 2px;
+    background: linear-gradient(90deg, var(--border), var(--text-muted));
+    position: relative;
+    flex-shrink: 0;
+  }
+  .h-arrow::after {
+    content: '';
+    position: absolute;
+    right: -1px;
+    top: -4px;
+    border: 5px solid transparent;
+    border-left: 7px solid var(--text-muted);
+  }
+
+  .h-arrow.accent { background: linear-gradient(90deg, var(--accent), var(--accent)); }
+  .h-arrow.accent::after { border-left-color: var(--accent); }
+
+  /* vertical arrow down */
+  .v-arrow-down {
+    width: 2px;
+    height: 24px;
+    background: var(--text-muted);
+    position: relative;
+    margin: 0 auto;
+    flex-shrink: 0;
+  }
+  .v-arrow-down::after {
+    content: '';
+    position: absolute;
+    bottom: -1px;
+    left: -4px;
+    border: 5px solid transparent;
+    border-top: 7px solid var(--text-muted);
+  }
+
+  /* ── Piecewise group ── */
+  .piecewise-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .node.piece {
+    border-color: var(--accent3);
+    background: linear-gradient(135deg, #161b22 0%, #231a18 100%);
+    font-size: 12px;
+    padding: 10px 16px;
+  }
+
+  /* ── Bottom row curved arrow ── */
+  .curved-connector {
+    width: 100%;
+    overflow: visible;
+    height: 0;
+    position: relative;
+  }
+
+  /* ── Grid layout for judge internals ── */
+  .judge-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .top-strip {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+  }
+
+  .middle-strip {
+    display: flex;
+    align-items: center;
+    gap: 0;
+  }
+
+  .bottom-strip {
+    display: flex;
+    align-items: center;
+    gap: 0;
+  }
+
+  /* bidirectional arrow */
+  .bi-arrow {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 36px;
+    gap: 2px;
+    flex-shrink: 0;
+  }
+  .bi-arrow .line {
+    width: 36px;
+    height: 2px;
+    background: var(--text-muted);
+    position: relative;
+  }
+  .bi-arrow .line.left::before {
+    content: '';
+    position: absolute;
+    left: -1px;
+    top: -4px;
+    border: 5px solid transparent;
+    border-right: 7px solid var(--text-muted);
+  }
+  .bi-arrow .line.right::after {
+    content: '';
+    position: absolute;
+    right: -1px;
+    top: -4px;
+    border: 5px solid transparent;
+    border-left: 7px solid var(--text-muted);
+  }
+
+  /* ── Connectors SVG overlay ── */
+  .svg-overlay {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    pointer-events: none;
+    overflow: visible;
+  }
+
+  /* tag pill */
+  .tag {
+    display: inline-block;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.08em;
+    padding: 2px 6px;
+    border-radius: 4px;
+    margin-top: 4px;
+  }
+  .tag.blue { background: #1f6feb44; color: var(--accent); border: 1px solid #1f6feb66; }
+  .tag.green { background: #238636aa; color: var(--accent2); border: 1px solid #3fb95044; }
+  .tag.purple { background: #6e40c944; color: var(--accent4); border: 1px solid #6e40c966; }
+  .tag.orange { background: #f7816622; color: var(--accent3); border: 1px solid #f7816644; }
+
+  /* Legend */
+  .legend {
+    display: flex;
+    gap: 24px;
+    margin-top: 28px;
+    padding: 14px 20px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    background: var(--surface);
+  }
+  .legend-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    color: var(--text-muted);
+    letter-spacing: 0.05em;
+  }
+  .legend-dot {
+    width: 10px; height: 10px;
+    border-radius: 2px;
+    border: 1.5px solid;
+  }
+</style>
+</head>
+<body>
+
+<div class="title-block">
+  <h1>System Architecture</h1>
+  <h2>Judge Evaluation Pipeline</h2>
+</div>
+
+<div class="diagram">
+
+  <!-- Input Node -->
+  <div class="node input-node">
+    Output from<br>an LLM
+    <div class="label-sub">SOURCE</div>
+  </div>
+
+  <!-- Arrow -->
+  <div style="width:32px; height:2px; background: var(--accent); position:relative; flex-shrink:0;">
+    <div style="position:absolute;right:-1px;top:-4px;border:5px solid transparent;border-left:7px solid var(--accent)"></div>
+  </div>
+
+  <!-- Judge Box -->
+  <div class="judge-box" style="position:relative;">
+    <span class="judge-label">JUDGE</span>
+
+    <div class="judge-grid">
+
+      <!-- TOP ROW: Input → Domain Decision ↔ Data Bank -->
+      <div class="top-strip">
+        <div class="node" style="min-width:90px;">Input</div>
+
+        <div style="width:28px;height:2px;background:var(--text-muted);position:relative;flex-shrink:0;">
+          <div style="position:absolute;right:-1px;top:-4px;border:5px solid transparent;border-left:7px solid var(--text-muted)"></div>
+        </div>
+
+        <div class="node domain" style="min-width:130px;">
+          Domain Decision
+          <div class="label-sub">ROUTER</div>
+        </div>
+
+        <!-- Bidirectional arrows -->
+        <div style="display:flex;flex-direction:column;gap:5px;flex-shrink:0;width:32px;align-items:center;">
+          <div style="width:32px;height:2px;background:var(--text-muted);position:relative;">
+            <div style="position:absolute;right:-1px;top:-4px;border:5px solid transparent;border-left:7px solid var(--text-muted)"></div>
+          </div>
+          <div style="width:32px;height:2px;background:var(--text-muted);position:relative;">
+            <div style="position:absolute;left:-1px;top:-4px;border:5px solid transparent;border-right:7px solid var(--text-muted)"></div>
+          </div>
+        </div>
+
+        <div class="node databank" style="min-width:110px;">
+          Data Bank
+          <div class="label-sub">KNOWLEDGE</div>
+        </div>
+      </div>
+
+      <!-- Down arrow from Domain Decision -->
+      <div style="display:flex;justify-content:center;padding-left:160px;">
+        <div style="width:2px;height:18px;background:var(--text-muted);position:relative;">
+          <div style="position:absolute;bottom:-1px;left:-4px;border:5px solid transparent;border-top:7px solid var(--text-muted)"></div>
+        </div>
+      </div>
+
+      <!-- RUBRIC BOX -->
+      <div class="rubric-box">
+        <span class="rubric-label">RUBRIC</span>
+        <div style="display:flex;align-items:center;gap:0;">
+
+          <!-- Benchmarks + Database stacked -->
+          <div style="display:flex;flex-direction:column;gap:8px;">
+            <div class="node" style="font-size:12px;padding:10px 14px;border-color:#6e40c9;">
+              Benchmarks
+              <span class="tag purple">REF</span>
+            </div>
+            <div class="node" style="font-size:12px;padding:10px 14px;border-color:#6e40c9;">
+              Database
+              <span class="tag purple">DATA</span>
+            </div>
+          </div>
+
+          <!-- Arrow right -->
+          <div style="width:28px;height:2px;background:var(--text-muted);position:relative;flex-shrink:0;">
+            <div style="position:absolute;right:-1px;top:-4px;border:5px solid transparent;border-left:7px solid var(--text-muted)"></div>
+          </div>
+
+          <div class="node" style="min-width:130px;border-color:#8b949e;">
+            Evaluation Pipeline
+            <div class="label-sub">PROCESSING</div>
+          </div>
+
+          <!-- Arrow right -->
+          <div style="width:28px;height:2px;background:var(--accent);position:relative;flex-shrink:0;">
+            <div style="position:absolute;right:-1px;top:-4px;border:5px solid transparent;border-left:7px solid var(--accent)"></div>
+          </div>
+
+          <div class="node eval-chain" style="min-width:160px;">
+            Evaluation +<br>Chain of Density
+            <span class="tag blue">CORE</span>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- BOTTOM ROW: New Prompt → Piecewise A/B → New Output ↑→ Eval+CoD -->
+      <div style="display:flex;align-items:center;gap:0;">
+
+        <div class="node" style="min-width:110px;font-size:12px;border-color:#8b949e;">
+          New Prompt<br>to LLM
+          <div class="label-sub">RETRY</div>
+        </div>
+
+        <!-- Fork arrow -->
+        <div style="display:flex;flex-direction:column;gap:0;align-items:flex-start;flex-shrink:0;width:28px;margin:0 4px;">
+          <svg width="28" height="50" viewBox="0 0 28 50" fill="none">
+            <line x1="0" y1="25" x2="18" y2="25" stroke="#8b949e" stroke-width="2"/>
+            <line x1="18" y1="25" x2="18" y2="10" stroke="#8b949e" stroke-width="2"/>
+            <line x1="18" y1="25" x2="18" y2="40" stroke="#8b949e" stroke-width="2"/>
+            <line x1="18" y1="10" x2="24" y2="10" stroke="#8b949e" stroke-width="2"/>
+            <polygon points="22,6 28,10 22,14" fill="#8b949e"/>
+            <line x1="18" y1="40" x2="24" y2="40" stroke="#8b949e" stroke-width="2"/>
+            <polygon points="22,36 28,40 22,44" fill="#8b949e"/>
+          </svg>
+        </div>
+
+        <!-- Piecewise stacked -->
+        <div class="piecewise-group">
+          <div class="node piece">Piecewise A</div>
+          <div class="node piece">Piecewise B</div>
+        </div>
+
+        <!-- Merge arrow -->
+        <div style="flex-shrink:0;width:28px;margin:0 4px;">
+          <svg width="28" height="50" viewBox="0 0 28 50" fill="none">
+            <line x1="0" y1="10" x2="10" y2="10" stroke="#8b949e" stroke-width="2"/>
+            <line x1="0" y1="40" x2="10" y2="40" stroke="#8b949e" stroke-width="2"/>
+            <line x1="10" y1="10" x2="10" y2="25" stroke="#8b949e" stroke-width="2"/>
+            <line x1="10" y1="40" x2="10" y2="25" stroke="#8b949e" stroke-width="2"/>
+            <line x1="10" y1="25" x2="24" y2="25" stroke="#8b949e" stroke-width="2"/>
+            <polygon points="22,21 28,25 22,29" fill="#8b949e"/>
+          </svg>
+        </div>
+
+        <div class="node" style="min-width:110px;border-color:#8b949e;font-size:12px;">
+          New Output
+          <div class="label-sub">GENERATED</div>
+        </div>
+
+        <!-- Up arrow connecting New Output → Eval+CoD (handled with SVG) -->
+        <div style="width:2px;height:2px;flex-shrink:0;"></div>
+
+      </div>
+
+    </div>
+
+    <!-- SVG overlay for the curved arrow: New Output → Eval+Chain of Density -->
+    <svg class="svg-overlay" style="position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none;overflow:visible;">
+      <defs>
+        <marker id="arr" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+          <path d="M0,0 L0,6 L8,3 z" fill="#58a6ff"/>
+        </marker>
+        <marker id="arr-muted" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+          <path d="M0,0 L0,6 L8,3 z" fill="#8b949e"/>
+        </marker>
+      </defs>
+      <!-- Curved line from bottom-right area up to Eval+Chain of Density -->
+      <!-- These coords are approximate; the path goes from New Output node up to right side of eval-chain node -->
+      <path d="M 795 310 C 830 310 845 200 845 175" stroke="#58a6ff" stroke-width="1.8" fill="none" stroke-dasharray="4 3" marker-end="url(#arr)" opacity="0.8"/>
+      <!-- Curved feedback from New Prompt back to Benchmarks/Database -->
+      <path d="M 115 310 C 90 310 70 295 70 275 C 70 255 85 240 110 235" stroke="#8b949e" stroke-width="1.5" fill="none" stroke-dasharray="3 3" marker-end="url(#arr-muted)" opacity="0.6"/>
+    </svg>
+
+  </div>
+
+  <!-- Arrow to final output -->
+  <div style="width:32px;height:2px;background:var(--accent2);position:relative;flex-shrink:0;">
+    <div style="position:absolute;right:-1px;top:-4px;border:5px solid transparent;border-left:7px solid var(--accent2)"></div>
+  </div>
+
+  <!-- Final Output -->
+  <div class="node output-node">
+    Evaluation +<br>Final Output
+    <div class="label-sub">RESULT</div>
+    <span class="tag green">OUTPUT</span>
+  </div>
+
+</div>
+
+<!-- Legend -->
+<div class="legend">
+  <div class="legend-item">
+    <div class="legend-dot" style="border-color: var(--accent);"></div>
+    Primary data flow
+  </div>
+  <div class="legend-item">
+    <div class="legend-dot" style="border-color: var(--accent4);"></div>
+    Knowledge / context
+  </div>
+  <div class="legend-item">
+    <div class="legend-dot" style="border-color: var(--accent3);"></div>
+    Piecewise outputs
+  </div>
+  <div class="legend-item">
+    <div class="legend-dot" style="border-color: var(--accent2);"></div>
+    Final result
+  </div>
+  <div class="legend-item" style="margin-left:auto;">
+    <svg width="24" height="8"><line x1="0" y1="4" x2="18" y2="4" stroke="#58a6ff" stroke-width="1.5" stroke-dasharray="3 2"/><polygon points="16,1 22,4 16,7" fill="#58a6ff"/></svg>
+    Feedback loop
+  </div>
+</div>
+
+</body>
+</html>
