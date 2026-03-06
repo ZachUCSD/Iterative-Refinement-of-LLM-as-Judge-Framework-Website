@@ -1,3 +1,15 @@
+<div style="position:fixed; top:80px; right:20px; background:#1c2330; 
+border:1px solid #30363d; border-radius:8px; padding:16px; 
+font-size:13px; line-height:2; z-index:999;">
+  <strong style="color:#58a6ff;">Contents</strong><br>
+  <a href="#motivation" style="color:#8b949e; text-decoration:none;">Motivation</a><br>
+  <a href="#why-our-project-is-unique" style="color:#8b949e; text-decoration:none;">Why Unique</a><br>
+  <a href="#approach" style="color:#8b949e; text-decoration:none;">Approach</a><br>
+  <a href="#results" style="color:#8b949e; text-decoration:none;">Results</a><br>
+  <a href="#limitations" style="color:#8b949e; text-decoration:none;">Limitations</a>
+</div>
+
+
 # Iterative Refinement of LLM as Judge Framework Website
 <div class="button-container">
   <a href="#motivation" class="custom-button">Paper</a>
@@ -33,9 +45,9 @@
 </style>
 
 # Motivation
-Large language models (LLMs) have become commonplace in everday life. With their versatility in handing information and the sheer amount of data that LLMs are capable of producing it has become a struggle to monitor the quality of these amazing tools. LLMs are notorious for both being useful and unreliable a bizarre contradiction that we seek to solve. From hallucinations to ignoring information LLMs have a multitude of quality issues. In order to fix this issue we believe that methods to evaluate LLM outputs must be created, as a tool is only as useful as it's ability to be evaluated. To this end we have created an LLM judge framework.
+Large language models (LLMs) have become commonplace in everyday life. With their versatility in handling information and the sheer volume of content they produce, monitoring output quality has become a critical challenge. LLMs are simultaneously powerful and unreliable — prone to hallucinations, omissions, and factual errors — a contradiction that motivates our work. As a tool is only as useful as our ability to evaluate it, we set out to build a robust LLM judge framework.
 
-Traditional NLP metrics like ROUGE, BLEU, and BERTScore are useful but fall short — they reward surface-level similarity while missing qualities like factual grounding, semantic completeness, and practical usefulness. This motivates our central goal: an iterative evaluation system that combines LLM-as-judge scoring with human-guided rubrics and task-based NLP metrics to produce an evaluator that aligns closely with human judgment. We study this through lecture slide summarization, a controllable and personally relevant domain that lets us isolate where different evaluation strategies succeed or fail. Our focus is not on optimizing summarization itself, but on designing a framework that can meaningfully assess a wide range of generated outputs. To achieve this, we pair rubric-based judging with deterministic task-based checks, domain-aware criteria, and an iterative refinement loop that targets weaknesses across evaluation passes.
+Traditional NLP metrics like ROUGE, BLEU, and BERTScore reward surface-level similarity while missing qualities like factual grounding, semantic completeness, and practical usefulness — making them poor proxies for human judgment. This motivates our central goal: an iterative evaluation system that combines LLM-as-judge scoring with human-guided rubrics and task-based NLP metrics. Our primary stakeholders are researchers and educators who need reliable, interpretable evaluations of AI-generated summaries, and developers building LLM pipelines who require scalable quality checks without manual review. We study this through lecture slide summarization — a controllable, academically relevant domain that lets us isolate where evaluation strategies succeed or fail. Our scope is limited to the evaluation framework itself; we do not optimize or fine-tune any summarization model. Performance may vary on highly technical or out-of-distribution lecture content.
 
 # Why our project is unique?
 
@@ -52,6 +64,10 @@ Chain of Density Integration — We combine standard evaluation with Chain of De
 Piecewise Output Evaluation — Responses are broken into parallel sub-components (Piecewise A/B) and evaluated independently before being merged, catching localized errors that whole-output scoring would miss.
 
 End-to-End Automated Pipeline — From raw LLM output to a final scored result, the entire workflow is automated with no manual intervention required, making it scalable across large evaluation tasks.
+
+Honest Scope — Our framework evaluates summaries; it does not improve the underlying summarization model. Gains in output quality come entirely from iterative re-prompting within the evaluation loop, not from model fine-tuning.
+
+Known Limitations — LLM-as-judge scoring is sensitive to prompt design and can reflect biases in the judge model. Our domain rubric bank is also bounded by the domains we defined, so performance on out-of-distribution lecture types may degrade.
 
 # Roadmap 
 <iframe 
