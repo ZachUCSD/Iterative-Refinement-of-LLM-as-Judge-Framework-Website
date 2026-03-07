@@ -6,7 +6,7 @@ font-size:13px; line-height:2; z-index:999;">
   <a href="#methodology" style="color:#8b949e; text-decoration:none;">Methedology</a><br>
   <a href="#pipeline-overview" style="color:#8b949e; text-decoration:none;">Pipeline</a><br>
   <a href="#results" style="color:#8b949e; text-decoration:none;">Results</a><br>
-  <a href="#scopes--limitations" style="color:#8b949e; text-decoration:none;">Limitations</a>
+  <a href="#scope-and-limitations" style="color:#8b949e; text-decoration:none;">Limitations</a>
 </div>
 
 
@@ -229,7 +229,7 @@ Another key observation is that improvements were not strictly monotonic. Some i
 
 Overall, the results demonstrate that the iterative evaluation framework can efficiently refine model outputs while maintaining a relatively low number of iterations.
 
-# Scope & Limitations
+# Scope and Limitations
 
 Honest Scope — Our framework evaluates summaries; it does not improve the underlying summarization model. Gains in output quality come entirely from iterative re-prompting within the evaluation loop, not from model fine-tuning.
 
