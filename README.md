@@ -142,7 +142,12 @@ Our dataset consists of lecture slides from multiple UC San Diego courses, spann
 
 
 # Results
-
+<iframe 
+  src="results.html" 
+  width="100%" 
+  height="600" 
+  style="border:none; border-radius:12px;">
+</iframe>
 
 # Scope & Limitations
 
