@@ -148,6 +148,17 @@ Our dataset consists of lecture slides from multiple UC San Diego courses, spann
   height="600" 
   style="border:none; border-radius:12px;">
 </iframe>
+We evaluated the iterative refinement framework on seven lecture summaries. For each lecture, the system generated an initial summary and then repeatedly refined it using targeted feedback from the LLM-as-Judge evaluation system. Each iteration was scored on a 5-point scale and assigned a quality metric. The process continued until the framework detected that improvements had plateaued.
+
+Across all lectures, the framework converged quickly. Most runs stopped after four iterations, with only one lecture requiring five iterations before reaching the stopping criteria. The stopping mechanism successfully identified when additional refinement was unlikely to significantly improve the output. In most cases, the system stopped due to a high-quality plateau, meaning the model output had stabilized at a high score.
+
+Initial scores were already relatively strong, typically ranging between 4.32 and 4.48 out of 5, indicating that the base generation model produced reasonably high-quality summaries before refinement. Iterative feedback produced modest improvements in several cases, increasing the maximum score observed in a run while also stabilizing the output.
+
+The final normalized evaluation scores ranged from 0.69 to 0.86, with most lectures clustering around 0.74–0.77. Lecture 2 achieved the highest final score, while Lecture 3 produced the lowest, largely due to earlier plateauing in the quality metric.
+
+Another key observation is that improvements were not strictly monotonic. Some iterations produced slight decreases in quality or score before later improvements occurred. This suggests that the refinement process explores nearby variations of the summary rather than following a strictly linear improvement path. Despite these fluctuations, the stopping criteria prevented unnecessary iterations once progress stalled.
+
+Overall, the results demonstrate that the iterative evaluation framework can efficiently refine model outputs while maintaining a relatively low number of iterations.
 
 # Scope & Limitations
 
@@ -157,3 +168,4 @@ Known Limitations — LLM-as-judge scoring is sensitive to prompt design and can
 
 
 # Conclusion
+The experiments show that the iterative LLM-as-Judge framework can reliably refine generated summaries while converging quickly. Most runs stabilized within four iterations and achieved consistently high evaluation scores. These results suggest that iterative evaluation with targeted feedback is an effective and computationally efficient approach for improving LLM-generated content.
