@@ -133,6 +133,75 @@ The updated output is re-evaluated by the Judge.
 
 Unlike static evaluation systems, this process continues until the output satisfies predefined quality thresholds.
 
+## Scoring Methodology
+
+To produce a final evaluation score, our framework combines multiple scoring components into a hybrid metric that balances rubric-based evaluation with explicit quality heuristics.
+
+### 1. Rubric-Based Domain Score
+
+The primary evaluation score comes from the structured rubric applied by the LLM judge.
+
+\[
+C = \text{domain}_{rubric}
+\]
+
+This score reflects how well the generated response satisfies the domain-specific evaluation criteria.
+
+---
+
+### 2. Manual Weighted Baseline Score
+
+We also compute an explicit weighted score designed to capture structural and content quality.
+
+\[
+M = (0.8 \cdot base + 0.2 \cdot coverage) - 0.1 \cdot 2^{hallucination}
+\]
+
+Where:
+
+- **base** measures overall response quality
+- **coverage** measures how well the response addresses the source material
+- **hallucination** penalizes unsupported or fabricated content
+
+This formulation increases penalties exponentially when hallucination signals are detected.
+
+---
+
+### 3. Hybrid Final Score
+
+The rubric score and the manual baseline score are combined into a hybrid metric:
+
+\[
+S = 0.7C + 0.3M
+\]
+
+This weighting prioritizes rubric-based evaluation while still incorporating explicit structural signals.
+
+---
+
+### 4. Hallucination Adjustment
+
+The final score applies an additional hallucination penalty:
+
+\[
+S_{final} = S(1 - 0.15h)
+\]
+
+where \(h\) represents the hallucination indicator.
+
+---
+
+### 5. Diagnostics Logging
+
+The system logs detailed evaluation diagnostics in `result.json`, including:
+
+- component scores
+- hallucination indicators
+- score disagreements between evaluators
+- iteration metadata
+
+This allows deeper inspection of scoring behavior during refinement.
+
 #### End-to-End Automation
 
 From the initial LLM generation to the final evaluation score, the entire workflow operates as a fully automated pipeline. No manual intervention is required, allowing the framework to scale across large evaluation datasets.
