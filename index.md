@@ -300,7 +300,7 @@ The lecture emphasizes the balance sheet, which reports a firm’s financial pos
 
 <p style="margin-top:15px; font-size:14px; color:#57606a;">
 Highlighted text indicates improvements introduced during iterative refinement:
-structural clarity, conceptual explanations, and additional technical detail.
+structural clarity (greeen), conceptual explanations (yellow), and additional technical detail (blue).
 </p>
 
 <iframe 
