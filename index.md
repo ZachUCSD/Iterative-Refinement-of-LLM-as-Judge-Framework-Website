@@ -102,7 +102,7 @@ This score reflects how well the generated response satisfies the domain-specifi
 
 We also compute an explicit weighted score designed to capture structural and content quality.
 
-$\M = (0.8 \cdot base + 0.2 \cdot coverage) - 0.1 \cdot 2^{hallucination}\$
+$M = (0.8 \cdot base + 0.2 \cdot coverage) - 0.1 \cdot 2^{hallucination}\$
 
 Where:
 
