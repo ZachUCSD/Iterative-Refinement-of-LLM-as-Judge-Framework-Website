@@ -9,8 +9,6 @@ font-size:13px; line-height:2; z-index:999;">
   <a href="#scope-and-limitations" style="color:#8b949e; text-decoration:none;">Limitations</a>
 </div>
 
-<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-
 
 
 <div class="button-container">
@@ -150,9 +148,7 @@ To produce a final evaluation score, our framework combines multiple scoring com
 
 The primary evaluation score comes from the structured rubric applied by the LLM judge.
 
-\[
-C = \text{domain}_{rubric}
-\]
+$\[C = \text{domain}_{rubric}\]$
 
 This score reflects how well the generated response satisfies the domain-specific evaluation criteria.
 
@@ -162,9 +158,7 @@ This score reflects how well the generated response satisfies the domain-specifi
 
 We also compute an explicit weighted score designed to capture structural and content quality.
 
-\[
-M = (0.8 \cdot base + 0.2 \cdot coverage) - 0.1 \cdot 2^{hallucination}
-\]
+$\[M = (0.8 \cdot base + 0.2 \cdot coverage) - 0.1 \cdot 2^{hallucination}\]$
 
 Where:
 
@@ -180,9 +174,7 @@ This formulation increases penalties exponentially when hallucination signals ar
 
 The rubric score and the manual baseline score are combined into a hybrid metric:
 
-\[
-S = 0.7C + 0.3M
-\]
+$\[S = 0.7C + 0.3M\]$
 
 This weighting prioritizes rubric-based evaluation while still incorporating explicit structural signals.
 
@@ -192,9 +184,7 @@ This weighting prioritizes rubric-based evaluation while still incorporating exp
 
 The final score applies an additional hallucination penalty:
 
-\[
-S_{final} = S(1 - 0.15h)
-\]
+$\[S_{final} = S(1 - 0.15h)\]$
 
 where \(h\) represents the hallucination indicator.
 
