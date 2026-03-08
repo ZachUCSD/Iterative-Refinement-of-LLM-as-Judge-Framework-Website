@@ -3,7 +3,7 @@ border:1px solid #30363d; border-radius:8px; padding:16px;
 font-size:13px; line-height:2; z-index:999;">
   <strong style="color:#58a6ff;">Contents</strong><br>
   <a href="#motivation" style="color:#8b949e; text-decoration:none;">Motivation</a><br>
-  <a href="#methodology" style="color:#8b949e; text-decoration:none;">Methedology</a><br>
+  <a href="#methodology" style="color:#8b949e; text-decoration:none;">Methodology</a><br>
   <a href="#pipeline-overview" style="color:#8b949e; text-decoration:none;">Pipeline</a><br>
   <a href="#results" style="color:#8b949e; text-decoration:none;">Results</a><br>
   <a href="#scope-and-limitations" style="color:#8b949e; text-decoration:none;">Limitations</a>
