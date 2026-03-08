@@ -197,6 +197,8 @@ Our dataset consists of lecture slides from multiple UC San Diego courses they a
 
 # Results
 ### Example Refinement (Lecture 1)
+The first visualization demonstrates how the iterative framework improves a generated summary.  
+An initial summary is evaluated by the judge system, weaknesses are identified, and a revised summary is produced.
 
 <style>
 .refinement-grid {
@@ -296,12 +298,13 @@ The lecture emphasizes the balance sheet, which reports a firm’s financial pos
 
 </div>
 
-
 <p style="margin-top:15px; font-size:14px; color:#57606a;">
 Highlighted text indicates improvements introduced during iterative refinement:
 structural clarity (greeen), conceptual explanations (yellow), and additional technical detail (blue).
 </p>
 
+
+The second visualization shows how summaries evolve across refinement iterations for each lecture.
 <iframe 
   src="results.html" 
   width="100%" 
