@@ -9,6 +9,8 @@ font-size:13px; line-height:2; z-index:999;">
   <a href="#scope-and-limitations" style="color:#8b949e; text-decoration:none;">Limitations</a>
 </div>
 
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
 
 
 <div class="button-container">
