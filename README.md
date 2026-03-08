@@ -148,7 +148,7 @@ To produce a final evaluation score, our framework combines multiple scoring com
 
 The primary evaluation score comes from the structured rubric applied by the LLM judge.
 
-$\[C = \text{domain}_{rubric}\]$
+$C = \text{domain}_{rubric}$
 
 This score reflects how well the generated response satisfies the domain-specific evaluation criteria.
 
