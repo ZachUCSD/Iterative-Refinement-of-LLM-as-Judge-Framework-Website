@@ -152,39 +152,41 @@ The system logs detailed evaluation diagnostics in including:
 
 This allows deeper inspection of scoring behavior during refinement. These metrics are processed by an Evaluation Pipeline, producing structured outputs before any qualitative scoring occurs. This approach ensures that evaluation is consistent, reproducible, and explainable rather than relying purely on subjective LLM judgment.
 
-#### Piecewise Output Evaluation
+#### Iterative Evaluation Pipeline
 
-Instead of evaluating the entire output as a single block, the system breaks responses into parallel sub-components (Piecewise A/B).
+The framework also incorporates an iterative evaluation stage that improves the generated summary before the final score is produced.
 
-Each component is evaluated independently before being merged into a final assessment. This allows the framework to detect localized errors that whole-output scoring would otherwise miss.
+Instead of evaluating the entire output as a single block, the system first performs **piecewise output evaluation**. The generated summary is divided into parallel sub-components (Piecewise A/B), which are evaluated independently before being merged into a final assessment. This allows the framework to detect **localized errors or missing information** that whole-output scoring would otherwise miss.
 
-### 3. Chain-of-Density Evaluation
-
-After computing explicit metrics, the system performs a deeper evaluation stage that combines structured scoring with Chain-of-Density prompting.
-
-Chain-of-Density refinement progressively improves the summary by increasing information density and semantic completeness without increasing overall length.
+After the piecewise evaluation step, the system performs a deeper scoring stage using **Chain-of-Density prompting**. Chain-of-Density refinement increases the informational density of the summary while maintaining the same overall length. Missing concepts are added and redundant phrasing is removed, improving semantic coverage without expanding the summary.
 
 This stage ensures that:
 
-- Metric values are not guessed
+- metric values are supported by evidence  
+- scoring decisions are grounded in the source material  
+- compression improves coverage while preserving fidelity  
 
-- Evidence-based reasoning supports scoring decisions
+Evaluation is guided by a **lever-based rubric system** that adjusts five quality dimensions on a **1–5 scale**:
 
-- Compression improves coverage while maintaining fidelity
+- coverage  
+- faithfulness  
+- organization  
+- clarity  
+- style  
 
-This integration of evaluation with density-based refinement is not commonly found in existing LLM judge frameworks.
+When weaknesses are detected, targeted feedback is generated and a revised version of the summary is produced. The updated output is then re-evaluated by the Judge.
 
-### 4. Iterative Refinement Loop
+This process forms an **iterative refinement loop**:
 
-If weaknesses are detected during evaluation, the system enters an iterative refinement loop.
+1. The Judge evaluates the piecewise output  
+2. Lever scores identify weaknesses in the summary  
+3. A new prompt is constructed using targeted feedback  
+4. The model generates revised summary segments  
+5. The updated output is recombined and evaluated again  
 
-- A new prompt is constructed using targeted feedback.
+Iterations continue until the system detects that additional revisions are unlikely to improve the result. This occurs when the lever scores stabilize across consecutive iterations, indicating that the summary has reached a **quality plateau**.
 
-- The LLM generates piecewise revisions of the summary.
-
-- A revised output is produced.
-
-The updated output is re-evaluated by the Judge. Unlike static evaluation systems, this process continues until the output is determined to no longer be able to be improved. This is determined by the lever adjustment system which adjusts the rubric one a 1-5 scale.
+---
 
 #### End-to-End Automation
 
