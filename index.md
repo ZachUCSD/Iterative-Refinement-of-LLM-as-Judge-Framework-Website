@@ -214,6 +214,103 @@ Our dataset consists of lecture slides from multiple UC San Diego courses, spann
 
 
 # Results
+## Example Refinement (Lecture 1)
+
+<div style="display:flex; gap:30px; align-items:flex-start; flex-wrap:wrap;">
+
+<div style="flex:1; min-width:300px; background:#1c2330; padding:20px; border-radius:10px; border:1px solid #30363d;">
+
+<h3>Initial Summary</h3>
+
+<p>
+This lecture introduces the foundational concepts of financial accounting, emphasizing its role as the “language of business.” Accounting communicates a company’s financial story by identifying, measuring, and recording economic events and reporting them to decision makers.
+</p>
+
+<p>
+Users of accounting information include investors, creditors, suppliers, managers, employees, customers, and regulators. These stakeholders use financial information to evaluate company performance and financial stability.
+</p>
+
+<p>
+Financial accounting focuses on three main activities—financing, investing, and operating—which are summarized in four financial statements: the balance sheet, income statement, statement of stockholders’ equity, and statement of cash flows.
+</p>
+
+<p>
+The reporting process follows Generally Accepted Accounting Principles (GAAP), overseen by the SEC and implemented by the Financial Accounting Standards Board (FASB), with IFRS providing international alignment.
+</p>
+
+<p>
+The balance sheet reports assets, liabilities, and stockholders’ equity at a specific point in time and follows the accounting equation:
+</p>
+
+<p><b>Assets = Liabilities + Stockholders’ Equity</b></p>
+
+</div>
+
+
+<div style="flex:1; min-width:300px; background:#1c2330; padding:20px; border-radius:10px; border:1px solid #30363d;">
+
+<h3>Refined Summary</h3>
+
+<p>
+<span style="background:#163d1d; padding:2px 4px; border-radius:4px;">
+The opening lecture of <i>Principles of Accounting</i> introduces financial accounting as both a measurement system and a communication framework—the language of business.
+</span>
+Accounting translates operational activities and outcomes into structured financial information used for decision making.
+</p>
+
+<p>
+<span style="background:#3b2f00; padding:2px 4px; border-radius:4px;">
+Its two core functions are <b>recordkeeping</b>, which identifies and measures economic events, and <b>communication</b>, which reports results through standardized financial statements.
+</span>
+</p>
+
+<p>
+<span style="background:#163d1d; padding:2px 4px; border-radius:4px;">
+Financial information serves multiple stakeholders. <b>Investors</b> evaluate company performance, <b>creditors and suppliers</b> assess repayment ability, and <b>managers</b> analyze operational strategy.
+</span>
+Other groups such as employees, regulators, and analysts also rely on accounting data.
+</p>
+
+<p>
+Financial accounting captures three types of activities: 
+<span style="background:#163d1d; padding:2px 4px; border-radius:4px;">
+<b>financing</b>, <b>investing</b>, and <b>operating</b>.
+</span>
+These activities are summarized in four core financial statements: the 
+<b>balance sheet</b>, <b>income statement</b>, <b>statement of stockholders’ equity</b>, and <b>statement of cash flows</b>.
+</p>
+
+<p>
+<span style="background:#0d2d50; padding:2px 4px; border-radius:4px;">
+Reporting follows <b>Generally Accepted Accounting Principles (GAAP)</b> established by the <b>Financial Accounting Standards Board (FASB)</b> under oversight of the <b>Securities and Exchange Commission (SEC)</b>.
+</span>
+Public companies submit <b>10-K</b>, <b>10-Q</b>, and <b>8-K</b> filings, while international standards are issued through <b>IFRS</b>.
+</p>
+
+<p>
+The lecture emphasizes the balance sheet, which reports a firm’s financial position at a specific date and follows the equation:
+</p>
+
+<p>
+<span style="background:#3b2f00; padding:2px 4px; border-radius:4px;">
+<b>Assets = Liabilities + Stockholders’ Equity</b>
+</span>
+</p>
+
+</div>
+
+</div>
+
+
+<div style="margin-top:15px; font-size:14px; color:#8b949e;">
+
+<b>Highlighted Improvements</b>
+
+<br>Green highlights indicate added structure or clearer explanations.  
+<br>Blue highlights indicate additional technical or regulatory details.  
+<br>Yellow highlights indicate improved conceptual explanations.
+
+</div>
 <iframe 
   src="demo.html" 
   width="100%" 
