@@ -1,5 +1,7 @@
+---
 layout: default
 title: LLM Judge Framework
+---
 
 <div style="position:fixed; top:80px; right:20px; background:#1c2330; 
 border:1px solid #30363d; border-radius:8px; padding:16px; 
