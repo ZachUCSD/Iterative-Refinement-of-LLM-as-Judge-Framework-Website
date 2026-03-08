@@ -102,7 +102,7 @@ This score reflects how well the generated response satisfies the domain-specifi
 
 We also compute an explicit weighted score designed to capture structural and content quality.
 
-$\[M = (0.8 \cdot base + 0.2 \cdot coverage) - 0.1 \cdot 2^{hallucination}\]$
+$\M = (0.8 \cdot base + 0.2 \cdot coverage) - 0.1 \cdot 2^{hallucination}\$
 
 Where:
 
@@ -118,7 +118,7 @@ This formulation increases penalties exponentially when hallucination signals ar
 
 The rubric score and the manual baseline score are combined into a hybrid metric:
 
-$\[S = 0.7C + 0.3M\]$
+$\S = 0.7C + 0.3M\$
 
 This weighting prioritizes rubric-based evaluation while still incorporating explicit structural signals.
 
@@ -128,9 +128,9 @@ This weighting prioritizes rubric-based evaluation while still incorporating exp
 
 The final score applies an additional hallucination penalty:
 
-$\[S_{final} = S(1 - 0.15h)\]$
+$\S_{final} = S(1 - 0.15h)\$
 
-where \(h\) represents the hallucination indicator, one of the metrics calculated during the pipeline.
+where \(h\) represents the hallucination indicator, one of the metrics calculated during the pipeline. By punishing ouputs using their hallucination score we are able to mitigate hallucination in the final output.
 
 ---
 
