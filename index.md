@@ -216,107 +216,109 @@ Our dataset consists of lecture slides from multiple UC San Diego courses, spann
 # Results
 ## Example Refinement (Lecture 1)
 
-<div style="display:flex; gap:30px; align-items:flex-start; flex-wrap:wrap;">
+<style>
+.refinement-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 30px;
+  margin-top: 20px;
+}
 
-<div style="flex:1; min-width:300px; background:#1c2330; padding:20px; border-radius:10px; border:1px solid #30363d;">
+.refinement-box {
+  border: 1px solid #d0d7de;
+  border-radius: 8px;
+  padding: 20px;
+}
 
-<h3>Initial Summary</h3>
+.refinement-box h3 {
+  margin-top: 0;
+}
 
-<p>
+.highlight-structure {
+  background: #d8f5d0;
+  padding: 2px 4px;
+  border-radius: 3px;
+}
+
+.highlight-concept {
+  background: #fff3b0;
+  padding: 2px 4px;
+  border-radius: 3px;
+}
+
+.highlight-detail {
+  background: #d0e7ff;
+  padding: 2px 4px;
+  border-radius: 3px;
+}
+</style>
+
+
+<div class="refinement-grid">
+
+<div class="refinement-box">
+
+### Initial Summary
+
 This lecture introduces the foundational concepts of financial accounting, emphasizing its role as the “language of business.” Accounting communicates a company’s financial story by identifying, measuring, and recording economic events and reporting them to decision makers.
-</p>
 
-<p>
 Users of accounting information include investors, creditors, suppliers, managers, employees, customers, and regulators. These stakeholders use financial information to evaluate company performance and financial stability.
-</p>
 
-<p>
 Financial accounting focuses on three main activities—financing, investing, and operating—which are summarized in four financial statements: the balance sheet, income statement, statement of stockholders’ equity, and statement of cash flows.
-</p>
 
-<p>
 The reporting process follows Generally Accepted Accounting Principles (GAAP), overseen by the SEC and implemented by the Financial Accounting Standards Board (FASB), with IFRS providing international alignment.
-</p>
 
-<p>
 The balance sheet reports assets, liabilities, and stockholders’ equity at a specific point in time and follows the accounting equation:
-</p>
 
-<p><b>Assets = Liabilities + Stockholders’ Equity</b></p>
+**Assets = Liabilities + Stockholders’ Equity**
 
 </div>
 
 
-<div style="flex:1; min-width:300px; background:#1c2330; padding:20px; border-radius:10px; border:1px solid #30363d;">
+<div class="refinement-box">
 
-<h3>Refined Summary</h3>
+### Refined Summary
 
-<p>
-<span style="background:#163d1d; padding:2px 4px; border-radius:4px;">
-The opening lecture of <i>Principles of Accounting</i> introduces financial accounting as both a measurement system and a communication framework—the language of business.
+<span class="highlight-structure">
+The opening lecture of *Principles of Accounting* introduces financial accounting as both a measurement system and a communication framework—the language of business.
 </span>
 Accounting translates operational activities and outcomes into structured financial information used for decision making.
-</p>
 
-<p>
-<span style="background:#3b2f00; padding:2px 4px; border-radius:4px;">
-Its two core functions are <b>recordkeeping</b>, which identifies and measures economic events, and <b>communication</b>, which reports results through standardized financial statements.
+<span class="highlight-concept">
+Its two core functions are **recordkeeping**, which identifies and measures economic events, and **communication**, which reports results through standardized financial statements.
 </span>
-</p>
 
-<p>
-<span style="background:#163d1d; padding:2px 4px; border-radius:4px;">
-Financial information serves multiple stakeholders. <b>Investors</b> evaluate company performance, <b>creditors and suppliers</b> assess repayment ability, and <b>managers</b> analyze operational strategy.
+<span class="highlight-structure">
+Financial information serves multiple stakeholders. **Investors** evaluate company performance, **creditors and suppliers** assess repayment ability, and **managers** analyze operational strategy.
 </span>
-Other groups such as employees, regulators, and analysts also rely on accounting data.
-</p>
 
-<p>
-Financial accounting captures three types of activities: 
-<span style="background:#163d1d; padding:2px 4px; border-radius:4px;">
-<b>financing</b>, <b>investing</b>, and <b>operating</b>.
+Financial accounting captures three types of activities:  
+**financing**, **investing**, and **operating**.
+
+These activities are summarized in four core financial statements:  
+**balance sheet**, **income statement**, **statement of stockholders’ equity**, and **statement of cash flows**.
+
+<span class="highlight-detail">
+Reporting follows **Generally Accepted Accounting Principles (GAAP)** established by the **Financial Accounting Standards Board (FASB)** under oversight of the **Securities and Exchange Commission (SEC)**.
 </span>
-These activities are summarized in four core financial statements: the 
-<b>balance sheet</b>, <b>income statement</b>, <b>statement of stockholders’ equity</b>, and <b>statement of cash flows</b>.
-</p>
 
-<p>
-<span style="background:#0d2d50; padding:2px 4px; border-radius:4px;">
-Reporting follows <b>Generally Accepted Accounting Principles (GAAP)</b> established by the <b>Financial Accounting Standards Board (FASB)</b> under oversight of the <b>Securities and Exchange Commission (SEC)</b>.
+Public companies submit **10-K**, **10-Q**, and **8-K** filings, while international standards are issued through **IFRS**.
+
+The lecture emphasizes the balance sheet, which reports a firm’s financial position at a specific date and follows:
+
+<span class="highlight-concept">
+**Assets = Liabilities + Stockholders’ Equity**
 </span>
-Public companies submit <b>10-K</b>, <b>10-Q</b>, and <b>8-K</b> filings, while international standards are issued through <b>IFRS</b>.
-</p>
-
-<p>
-The lecture emphasizes the balance sheet, which reports a firm’s financial position at a specific date and follows the equation:
-</p>
-
-<p>
-<span style="background:#3b2f00; padding:2px 4px; border-radius:4px;">
-<b>Assets = Liabilities + Stockholders’ Equity</b>
-</span>
-</p>
 
 </div>
 
 </div>
 
 
-<div style="margin-top:15px; font-size:14px; color:#8b949e;">
-
-<b>Highlighted Improvements</b>
-
-<br>Green highlights indicate added structure or clearer explanations.  
-<br>Blue highlights indicate additional technical or regulatory details.  
-<br>Yellow highlights indicate improved conceptual explanations.
-
-</div>
-<iframe 
-  src="demo.html" 
-  width="100%" 
-  height="600" 
-  style="border:none; border-radius:12px;">
-</iframe>
+<p style="margin-top:15px; font-size:14px; color:#57606a;">
+Highlighted text indicates improvements introduced during iterative refinement:
+structural clarity, conceptual explanations, and additional technical detail.
+</p>
 
 <iframe 
   src="results.html" 
