@@ -49,9 +49,9 @@ font-size:13px; line-height:2; z-index:999;">
 </style>
 
 # Motivation
-Large language models (LLMs) have become commonplace in everyday life. With their versatility in handling information and the sheer volume of content they produce, monitoring output quality has become a critical challenge. LLMs are simultaneously powerful and unreliable — prone to hallucinations, omissions, and factual errors — a contradiction that motivates our work. As a tool is only as useful as our ability to evaluate it, we set out to build a robust LLM judge framework.
+Large language models (LLMs) have become commonplace in everyday life. With their versatility in handling information and the sheer volume of content they produce, monitoring output quality has become a critical challenge. LLMs are simultaneously powerful and unreliable prone to hallucinations, omissions, and factual errors a contradiction that motivates our work. As a tool is only as useful as our ability to evaluate it, so we set out to build a robust LLM judge framework.
 
-Traditional NLP metrics like ROUGE, BLEU, and BERTScore reward surface-level similarity while missing qualities like factual grounding, semantic completeness, and practical usefulness — making them poor proxies for human judgment. This motivates our central goal: an iterative evaluation system that combines LLM-as-judge scoring with human-guided rubrics and task-based NLP metrics. Our primary stakeholders are researchers and educators who need reliable, interpretable evaluations of AI-generated summaries, and developers building LLM pipelines who require scalable quality checks without manual review. We study this through lecture slide summarization — a controllable, academically relevant domain that lets us isolate where evaluation strategies succeed or fail.
+Traditional NLP metrics like ROUGE, BLEU, and BERTScore reward surface-level similarity while missing qualities like factual grounding, semantic completeness, and practical usefulness making them poor proxies for human judgment. This motivates our central goal: an iterative evaluation system that combines LLM-as-judge scoring with human-guided rubrics and task-based NLP metrics. Our primary stakeholders are researchers and educators who need reliable, interpretable evaluations of AI-generated summaries, and developers building LLM pipelines who require scalable quality checks without manual review. We study this through lecture slide summarization a controllable, academically relevant domain that lets us isolate where evaluation strategies succeed or fail.
 
 # Methodology
 <iframe 
@@ -61,13 +61,11 @@ Traditional NLP metrics like ROUGE, BLEU, and BERTScore reward surface-level sim
   style="border:none; border-radius:12px;">
 </iframe>
 
-This project introduces an automated evaluation pipeline for Large Language Model (LLM) outputs. The system evaluates generated summaries using structured metrics, domain-aware reasoning, and iterative refinement.
+Our project introduces an automated evaluation pipeline for Large Language Model (LLM) outputs. The system evaluates generated summaries using structured metrics, domain-aware reasoning, and iterative refinement.
 
 Unlike traditional static evaluation systems that judge a single response, our framework continuously analyzes and refines outputs until they meet defined quality thresholds. The pipeline combines domain knowledge, structured rubrics, and progressive prompting techniques to produce reliable and reproducible evaluations.
 
 ## Pipeline Overview
-
-The evaluation pipeline transforms a raw LLM output into a structured, scored result through a multi-stage automated workflow.
 
 ### 1. Initial Generation
 
@@ -86,56 +84,6 @@ The first step is a Domain Decision module, which classifies the input and retri
 This allows the evaluation criteria to adapt based on the subject domain (for example, biology vs. data science), ensuring that the scoring rubric remains contextually relevant instead of relying on generic evaluation rules.
 
 #### Rubric-Guided Evaluation
-
-Once the domain is identified, the summary is evaluated using a structured rubric system anchored to predefined benchmarks.
-
-The system computes four primary evaluation metrics:
-
-- Accuracy
-
-- Faithfulness
-
-- Compression
-
-- Extractiveness
-
-These metrics are processed by an Evaluation Pipeline, producing structured outputs before any qualitative scoring occurs. This approach ensures that evaluation is consistent, reproducible, and explainable rather than relying purely on subjective LLM judgment.
-
-#### Piecewise Output Evaluation
-
-Instead of evaluating the entire output as a single block, the system breaks responses into parallel sub-components (Piecewise A/B).
-
-Each component is evaluated independently before being merged into a final assessment. This allows the framework to detect localized errors that whole-output scoring would otherwise miss.
-
-### 3. Chain-of-Density Evaluation
-
-After computing explicit metrics, the system performs a deeper evaluation stage that combines structured scoring with Chain-of-Density prompting.
-
-Chain-of-Density refinement progressively improves the summary by increasing information density and semantic completeness without increasing overall length.
-
-This stage ensures that:
-
-- Metric values are not guessed
-
-- Evidence-based reasoning supports scoring decisions
-
-- Compression improves coverage while maintaining fidelity
-
-This integration of evaluation with density-based refinement is not commonly found in existing LLM judge frameworks.
-
-### 4. Iterative Refinement Loop
-
-If weaknesses are detected during evaluation, the system enters an iterative refinement loop.
-
-A new prompt is constructed using targeted feedback.
-
-The LLM generates piecewise revisions of the summary.
-
-A revised output is produced.
-
-The updated output is re-evaluated by the Judge.
-
-Unlike static evaluation systems, this process continues until the output satisfies predefined quality thresholds.
 
 ## Scoring Methodology
 
@@ -204,6 +152,56 @@ The system logs detailed evaluation diagnostics in `result.json`, including:
 - iteration metadata
 
 This allows deeper inspection of scoring behavior during refinement.
+
+Once the domain is identified, the summary is evaluated using a structured rubric system anchored to predefined benchmarks.
+
+The system computes four primary evaluation metrics:
+
+- Accuracy
+
+- Faithfulness
+
+- Compression
+
+- Extractiveness
+
+These metrics are processed by an Evaluation Pipeline, producing structured outputs before any qualitative scoring occurs. This approach ensures that evaluation is consistent, reproducible, and explainable rather than relying purely on subjective LLM judgment.
+
+#### Piecewise Output Evaluation
+
+Instead of evaluating the entire output as a single block, the system breaks responses into parallel sub-components (Piecewise A/B).
+
+Each component is evaluated independently before being merged into a final assessment. This allows the framework to detect localized errors that whole-output scoring would otherwise miss.
+
+### 3. Chain-of-Density Evaluation
+
+After computing explicit metrics, the system performs a deeper evaluation stage that combines structured scoring with Chain-of-Density prompting.
+
+Chain-of-Density refinement progressively improves the summary by increasing information density and semantic completeness without increasing overall length.
+
+This stage ensures that:
+
+- Metric values are not guessed
+
+- Evidence-based reasoning supports scoring decisions
+
+- Compression improves coverage while maintaining fidelity
+
+This integration of evaluation with density-based refinement is not commonly found in existing LLM judge frameworks.
+
+### 4. Iterative Refinement Loop
+
+If weaknesses are detected during evaluation, the system enters an iterative refinement loop.
+
+- A new prompt is constructed using targeted feedback.
+
+- The LLM generates piecewise revisions of the summary.
+
+- A revised output is produced.
+
+The updated output is re-evaluated by the Judge.
+
+Unlike static evaluation systems, this process continues until the output satisfies predefined quality thresholds.
 
 #### End-to-End Automation
 
@@ -277,7 +275,7 @@ The balance sheet reports assets, liabilities, and stockholders’ equity at a s
 
 <div class="refinement-box">
 
-### Refined Summary
+<b>Refined Summary</b>
 
 <span class="highlight-structure">
 The opening lecture of *Principles of Accounting* introduces financial accounting as both a measurement system and a communication framework—the language of business.
@@ -343,6 +341,8 @@ Overall, the results demonstrate that the iterative evaluation framework can eff
 Honest Scope — Our framework evaluates summaries; it does not improve the underlying summarization model. Gains in output quality come entirely from iterative re-prompting within the evaluation loop, not from model fine-tuning.
 
 Known Limitations — LLM-as-judge scoring is sensitive to prompt design and can reflect biases in the judge model. Our domain rubric bank is also bounded by the domains we defined, so performance on out-of-distribution lecture types may degrade.
+
+# Future Work
 
 
 # Conclusion
