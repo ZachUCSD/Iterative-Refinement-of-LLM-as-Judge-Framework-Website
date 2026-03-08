@@ -137,6 +137,13 @@ Unlike static evaluation systems, this process continues until the output satisf
 
 ## Scoring Methodology
 
+<iframe 
+  src="scoring_pipeline.html" 
+  width="100%" 
+  height="600" 
+  style="border:none; border-radius:12px;">
+</iframe>
+
 To produce a final evaluation score, our framework combines multiple scoring components into a hybrid metric that balances rubric-based evaluation with explicit quality heuristics.
 
 ### 1. Rubric-Based Domain Score
