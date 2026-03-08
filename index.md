@@ -51,7 +51,7 @@ font-size:13px; line-height:2; z-index:999;">
 # Motivation
 Large language models (LLMs) have become commonplace in everyday life. With their versatility in handling information and the sheer volume of content they produce, monitoring output quality has become a critical challenge. LLMs are simultaneously powerful and unreliable — prone to hallucinations, omissions, and factual errors — a contradiction that motivates our work. As a tool is only as useful as our ability to evaluate it, we set out to build a robust LLM judge framework.
 
-Traditional NLP metrics like ROUGE, BLEU, and BERTScore reward surface-level similarity while missing qualities like factual grounding, semantic completeness, and practical usefulness — making them poor proxies for human judgment. This motivates our central goal: an iterative evaluation system that combines LLM-as-judge scoring with human-guided rubrics and task-based NLP metrics. Our primary stakeholders are researchers and educators who need reliable, interpretable evaluations of AI-generated summaries, and developers building LLM pipelines who require scalable quality checks without manual review. We study this through lecture slide summarization — a controllable, academically relevant domain that lets us isolate where evaluation strategies succeed or fail. Our scope is limited to the evaluation framework itself; we do not optimize or fine-tune any summarization model. Performance may vary on highly technical or out-of-distribution lecture content.
+Traditional NLP metrics like ROUGE, BLEU, and BERTScore reward surface-level similarity while missing qualities like factual grounding, semantic completeness, and practical usefulness — making them poor proxies for human judgment. This motivates our central goal: an iterative evaluation system that combines LLM-as-judge scoring with human-guided rubrics and task-based NLP metrics. Our primary stakeholders are researchers and educators who need reliable, interpretable evaluations of AI-generated summaries, and developers building LLM pipelines who require scalable quality checks without manual review. We study this through lecture slide summarization — a controllable, academically relevant domain that lets us isolate where evaluation strategies succeed or fail.
 
 # Methodology
 <iframe 
@@ -214,7 +214,7 @@ Our dataset consists of lecture slides from multiple UC San Diego courses, spann
 
 
 # Results
-## Example Refinement (Lecture 1)
+### Example Refinement (Lecture 1)
 
 <style>
 .refinement-grid {
@@ -258,7 +258,7 @@ Our dataset consists of lecture slides from multiple UC San Diego courses, spann
 
 <div class="refinement-box">
 
-### Initial Summary
+<b>Initial Summary: </b>
 
 This lecture introduces the foundational concepts of financial accounting, emphasizing its role as the “language of business.” Accounting communicates a company’s financial story by identifying, measuring, and recording economic events and reporting them to decision makers.
 
