@@ -150,7 +150,7 @@ The system logs detailed evaluation diagnostics in including:
 
 This allows deeper inspection of scoring behavior during refinement. These metrics are processed by an Evaluation Pipeline, producing structured outputs before any qualitative scoring occurs. This approach ensures that evaluation is consistent, reproducible, and explainable rather than relying purely on subjective LLM judgment.
 
-### Iterative Evaluation Pipeline
+### 3. Iterative Evaluation Pipeline
 
 The framework also incorporates an iterative evaluation stage that improves the generated summary before the final score is produced.
 
@@ -190,7 +190,7 @@ Iterations continue until the system detects that additional revisions are unlik
 
 From the initial LLM generation to the final evaluation score, the entire workflow operates as a fully automated pipeline. No manual intervention is required, allowing the framework to scale across large evaluation datasets.
 
-## Dataset
+### Dataset
 Our dataset consists of lecture slides from multiple UC San Diego courses they are aquired from courses we have personally taken, spanning data science, biology, and interdisciplinary STEM, provided in PDF format with structured content like bullet points, definitions, and equations. Unlike traditional articles, lecture slides present unique summarization challenges they are concise, visually structured, and omit transitional language, making automated evaluation non-trivial. We extract text while preserving structural cues like slide boundaries and section headings, which feed directly into our deterministic metrics such as section coverage and glossary recall.
 
 
