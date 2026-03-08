@@ -9,9 +9,10 @@ font-size:13px; line-height:2; z-index:999;">
   <strong style="color:#58a6ff;">Contents</strong><br>
   <a href="#motivation" style="color:#8b949e; text-decoration:none;">Motivation</a><br>
   <a href="#methodology" style="color:#8b949e; text-decoration:none;">Methodology</a><br>
-  <a href="#pipeline-overview" style="color:#8b949e; text-decoration:none;">Pipeline</a><br>
   <a href="#results" style="color:#8b949e; text-decoration:none;">Results</a><br>
-  <a href="#scope-and-limitations" style="color:#8b949e; text-decoration:none;">Limitations</a>
+  <a href="#scope-and-limitations" style="color:#8b949e; text-decoration:none;">Scope & Limitations</a>
+  <a href="#future-work" style="color:#8b949e; text-decoration:none;">Future Work</a>
+  <a href="#conclusion" style="color:#8b949e; text-decoration:none;">Conclusion</a>
 </div>
 
 
