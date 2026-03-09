@@ -265,7 +265,7 @@ Across the seven lectures, most runs converged in four iterations, while Lecture
 
 Initial rubric scores were already strong (≈4.30–4.56 / 5). Iterative refinement produced small improvements, helping stabilize summary quality across iterations.
 
-Highest normalized scores ranged from **0.8024 to 0.8843**. **Lecture 2 achieved the highest iteration score (0.8843)**, while **Lecture 3 produced the lowest (0.8024)**. 
+The highest iteration scores ranged from **0.8024 to 0.8843**. **Lecture 2 achieved the highest iteration score (0.8843)**, while **Lecture 3 produced the lowest (0.692)**. 
 
 At the end of each run, the iteration with the highest score was selected to represent the final summary. This ensures that late fluctuations or regressions do not reduce the reported performance.
 
