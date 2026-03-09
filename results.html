@@ -175,6 +175,9 @@
     <div class="legend-dot" style="border-color:#f78166;background:#f7816633;"></div>
     stalled
   </div>
+  <div style="width:100%;margin-top:6px;padding-top:10px;border-top:1px solid #30363d;font-family:'IBM Plex Mono',monospace;font-size:9px;color:#8b949e;letter-spacing:0.06em;">
+    NOTE: all three series are normalized to a 0–5 display axis.
+  </div>
 </div>
 
 <script>
@@ -203,12 +206,15 @@ const data = [
   {
     id: 3,
     iters: [
-      { score: 4.32, quality: 0.7621, words: 288 },
-      { score: 4.40, quality: 0.8024, words: 385 },
-      { score: 4.40, quality: 0.7659, words: 355 },
-      { score: 4.34, quality: 0.7891, words: 355 },
+      { score: 4.34, quality: 0.7536, words: 288 },
+      { score: 4.40, quality: 0.7614, words: 367 },
+      { score: 4.40, quality: 0.7443, words: 352 },
+      { score: 4.22, quality: 0.7392, words: 368 },
+      { score: 4.44, quality: 0.7667, words: 373 },
+      { score: 4.34, quality: 0.7696, words: 353 },
+      { score: 4.32, quality: 0.7816, words: 344 },
     ],
-    stopReason: 'stalled: trend plateaued',
+    stopReason: 'pass: high quality plateau',
   },
   {
     id: 4,
@@ -266,14 +272,16 @@ function mkSVG(lec) {
   const n = lec.iters.length;
   const xs = lec.iters.map((_, i) => PAD_L + (i / (n - 1 || 1)) * CW);
 
-  const scoreMin = 4.20, scoreMax = 4.60;
+  const scoreMin = 0, scoreMax = 5;
   const scoreY = v => PAD_T + CH - ((v - scoreMin) / (scoreMax - scoreMin)) * CH;
 
+  // Normalize quality (0.74–0.92) into 0–5 display range
   const qualMin = 0.74, qualMax = 0.92;
-  const qualY = v => PAD_T + CH - ((v - qualMin) / (qualMax - qualMin)) * CH;
+  const qualY = v => scoreY(((v - qualMin) / (qualMax - qualMin)) * 5);
 
+  // Normalize word count (260–440) into 0–5 display range
   const wMin = 260, wMax = 440;
-  const wordY = v => PAD_T + CH - ((v - wMin) / (wMax - wMin)) * CH;
+  const wordY = v => scoreY(((v - wMin) / (wMax - wMin)) * 5);
 
   let svg = `<svg viewBox="0 0 ${W} ${H}" xmlns="http://www.w3.org/2000/svg">
   <defs>
@@ -332,7 +340,7 @@ function mkSVG(lec) {
   });
 
   // Y-axis labels
-  [scoreMin, (scoreMin + scoreMax) / 2, scoreMax].forEach(v => {
+  [0, 2.5, 5].forEach(v => {
     svg += `<text x="${PAD_L - 4}" y="${scoreY(v) + 3}" text-anchor="end" font-family="'IBM Plex Mono',monospace" font-size="7" fill="#8b949e">${v.toFixed(1)}</text>`;
   });
 
