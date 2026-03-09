@@ -86,9 +86,9 @@ The first step is a Domain Decision module, which classifies the input and retri
   style="border:none; border-radius:12px; display:block;"
   onload="this.style.height=this.contentDocument.body.scrollHeight+'px'">
 </iframe>
-The evaluation system combines rubric-based judging with deterministic signals derived from the lecture slides. The LLM judge evaluates summaries across five qualitative dimensions: **coverage, faithfulness, organization, clarity, and style**. Alongside the rubric, the pipeline computes deterministic signals including **length error, section coverage, glossary recall, and suspected hallucination rate**.
+The evaluation system combines rubric-based judging with deterministic signals derived from the lecture slides. The LLM judge evaluates summaries across five qualitative dimensions: coverage, faithfulness, organization, clarity, and style. Alongside the rubric, the pipeline computes deterministic signals including length error, section coverage, glossary recall, and suspected hallucination rate.
 
-These signals are blended into two complementary scores. A **rubric-based comprehensive score (C)** captures qualitative judgment, while a **manual weighted baseline score (M)** incorporates structural signals and applies an exponential hallucination penalty. These components are combined into a **raw quality score**.
+These signals are blended into two complementary scores. A rubric-based comprehensive score (C) captures qualitative judgment, while a manual weighted baseline score (M) incorporates structural signals and applies an exponential hallucination penalty. These components are combined into a raw quality score.
 
 To reduce the impact of unsupported content, the system applies a domain-aware damping factor based on the hallucination rate. This produces a risk-adjusted score, which becomes the final stored evaluation score.
 
@@ -108,7 +108,7 @@ The pipeline logs detailed evaluation metadata for transparency and reproducibil
 - final_score_0to1  
 - lecture_title  
 
-Both **raw quality scores and risk-adjusted scores** are stored alongside the policy parameters used during evaluation, enabling deeper inspection of scoring behavior.
+Both raw quality scores and risk-adjusted scores are stored alongside the policy parameters used during evaluation, enabling deeper inspection of scoring behavior.
 
 ---
 
@@ -118,9 +118,9 @@ The framework also includes an iterative refinement stage that improves summarie
 
 The pipeline begins with an initial summary and repeatedly refines it using rubric feedback and pairwise preference comparisons between candidate revisions. At each step, the system evaluates the updated summary using both rubric scores and deterministic signals.
 
-A trend-aware stopping controller determines when refinement should end. The controller monitors score trajectories and classifies each iteration into categories such as **pass, borderline, stalled, or max iterations**, preventing both premature stopping and unnecessary refinement loops.
+A trend-aware stopping controller determines when refinement should end. The controller monitors score trajectories and classifies each iteration into categories such as pass, borderline, stalled, or max iterations, preventing both premature stopping and unnecessary refinement loops.
 
-To reduce noise from a weak final rewrite, the system applies a **best-of-last-k safeguard**, selecting the highest-quality summary among the final iterations before computing the final score.
+To reduce noise from a weak final rewrite, the system applies a best-of-last-k safeguard, selecting the highest-quality summary among the final iterations before computing the final score.
 
 This iterative process ensures that summaries are progressively refined while maintaining faithfulness to the source material and stable evaluation behavior.
 
@@ -265,11 +265,11 @@ Across the seven lectures, most runs converged in four iterations, while Lecture
 
 Initial rubric scores were already strong (≈4.30–4.56 / 5). Iterative refinement produced small improvements, helping stabilize summary quality across iterations.
 
-The highest iteration scores ranged from **0.8024 to 0.8843**. **Lecture 2 achieved the highest iteration score (0.8843)**, while **Lecture 3 produced the lowest (0.692)**. 
+The highest iteration scores ranged from 0.8024 to 0.8843. Lecture 2 achieved the highest iteration score (0.8843), while Lecture 3 produced the lowest (0.692). 
 
 At the end of each run, the iteration with the highest score was selected to represent the final summary. This ensures that late fluctuations or regressions do not reduce the reported performance.
 
-The stopping controller successfully detected when summaries reached a quality plateau. Some runs ended because strict thresholds were met (**PASS**), while others stopped when score trends stalled (**STALLED**), preventing unnecessary iterations.
+The stopping controller successfully detected when summaries reached a quality plateau. Some runs ended because strict thresholds were met (PASS), while others stopped when score trends stalled (STALLED), preventing unnecessary iterations.
 
 # Scope and Limitations
 
