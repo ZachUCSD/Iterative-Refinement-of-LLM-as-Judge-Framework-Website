@@ -254,8 +254,8 @@ The second visualization shows how summaries evolve across refinement iterations
 <iframe 
   src="results.html" 
   width="100%" 
-  height="600" 
-  style="border:none; border-radius:12px;">
+  style="border:none; border-radius:12px; display:block;"
+  onload="this.style.height=this.contentDocument.body.scrollHeight+'px'">
 </iframe>
 
 ### Key Findings
