@@ -87,53 +87,9 @@ The first step is a Domain Decision module, which classifies the input and retri
   style="border:none; border-radius:12px;">
 </iframe>
 
-To produce a final evaluation score, our framework combines multiple scoring components into a hybrid metric that balances rubric-based evaluation with explicit quality heuristics.
+The final score combines a domain-aware rubric evaluation with a deterministic metric blend derived from the lecture slides. The rubric measures qualitative dimensions such as coverage, faithfulness, organization, clarity, and style on a 1-5 scale, while the metric component captures structural signals like section coverage.
 
-#### Rubric-Based Domain Score
-
-The primary evaluation score comes from the structured rubric applied by the LLM judge.
-
-$C = \text{domain}_{rubric}$
-
-This score reflects how well the generated response satisfies the domain-specific evaluation criteria.
-
----
-
-#### Manual Weighted Baseline Score
-
-We also compute an explicit weighted score designed to capture structural and content quality.
-
-$M = (0.8 \cdot base + 0.2 \cdot coverage) - 0.1 \cdot 2^{hallucination}\$
-
-Where:
-
-- **base** measures overall response quality
-- **coverage** measures how well the response addresses the source material
-- **hallucination** penalizes unsupported or fabricated content
-
-This formulation increases penalties exponentially when hallucination signals are detected.
-
----
-
-#### Hybrid Final Score
-
-The rubric score and the manual baseline score are combined into a hybrid metric:
-
-$\S = 0.7C + 0.3M\$
-
-This weighting prioritizes rubric-based evaluation while still incorporating explicit structural signals.
-
----
-
-#### Hallucination Adjustment
-
-The final score applies an additional hallucination penalty:
-
-$\S_{final} = S(1 - 0.15h)\$
-
-where \(h\) represents the hallucination indicator, one of the metrics calculated during the pipeline. By punishing ouputs using their hallucination score we are able to mitigate hallucination in the final output.
-
----
+A hallucination signal estimates how often the summary introduces statements unsupported by the slides. This signal reduces the final score, ensuring that summaries are rewarded for remaining accurate and grounded in the source material.
 
 #### Diagnostics Logging
 
