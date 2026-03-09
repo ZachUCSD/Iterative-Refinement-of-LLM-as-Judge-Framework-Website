@@ -279,11 +279,7 @@ Highlighted text indicates improvements introduced during iterative refinement:
 structural framing (green), expanded conceptual explanation (yellow), and additional technical detail (blue).
 </p>
 
-<p style="margin-top:10px; font-size:14px; color:#57606a;">
-From the highlighted sections it is noticeable that the refinement primarily targets the organization of the summary by restructuring information for better readability. The refined summary also includes additional technical details that expand on topics introduced in the initial summary but not fully explained.
-</p>
-
-From the highlighted sections it is noticeable that the refinement primarily improves the organization of the summary by restructuring information for greater clarity and readability. The refined version also introduces additional technical details that expand on topics mentioned in the initial summary but not fully explained.
+From the highlighted sections it is noticeable that the refinement primarily improves the organization of the summary by restructuring information for greater clarity and readability. The refined version also introduces additional technical details that expand on topics mentioned in the initial summary but are not fully explained.
 
 The second visualization shows how summaries evolve across refinement iterations for each lecture.
 
