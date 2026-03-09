@@ -311,9 +311,7 @@ The stopping controller effectively identified when summaries reached a quality 
 
 Our framework evaluates and refines summaries but does not improve the underlying summarization model. Quality gains come from iterative re-prompting within the evaluation loop rather than model fine-tuning.
 
-The experiments also have several limitations. The dataset is small (seven lectures), so results should be interpreted as descriptive rather than statistically conclusive. We also used GPT-5 models for both generation and evaluation, which may introduce stylistic bias in scoring. Additionally, no human evaluation was conducted, so the relationship between rubric scores and actual student usefulness remains unverified.
-
-Finally, the suspected hallucination rate is a lexical heuristic rather than a factual verifier, and lectures were evaluated using two scoring modes (reference-aware and reference-free), which limits direct comparability across all results.
+The experiments also have several limitations. The dataset is small (seven lectures), so results should be interpreted as descriptive rather than statistically conclusive. We also used GPT-5 models for both generation and evaluation, which may introduce stylistic bias in scoring.
 
 # Future Work
 
