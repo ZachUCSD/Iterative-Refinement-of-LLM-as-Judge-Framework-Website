@@ -95,15 +95,17 @@ These signals are first merged into a **raw quality score**, which is then adjus
 
 The system logs detailed evaluation diagnostics in including:
 
-- component scores
-- hallucination indicators
-- score disagreements between evaluators
-- iteration metadata
-- coverage
-- faithfulness
-- organization
-- clarity
-- style
+- refined_summary
+- signals
+- rubric
+- agreement
+- comprehensive_scoring
+- hybrid_scoring
+- leaderboard_scores
+- iteration_score_table
+- refinement_metadata
+- final_score_0to1
+- lecture_title
 
 This allows deeper inspection of scoring behavior during refinement. These metrics are processed by an Evaluation Pipeline, producing structured outputs before any qualitative scoring occurs. This approach ensures that evaluation is consistent, reproducible, and explainable rather than relying purely on subjective LLM judgment.
 
