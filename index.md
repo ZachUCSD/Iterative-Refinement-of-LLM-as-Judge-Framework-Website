@@ -17,7 +17,7 @@ font-size:13px; line-height:2; z-index:999;">
 
 
 <div class="button-container">
-  <a href="#motivatio" class="custom-button">Paper</a>
+  <a href="https://drive.google.com/file/d/13Jhg0WviGj45ZpfZuxlo0pAVJdT0_j5Q/view?usp=sharing" class="custom-button">Paper</a>
   <a href="https://drive.google.com/file/d/1_pcr0K4gf2gjXMl5ynX_OiN9Gq6g7txX/view?usp=sharing" class="custom-button">Poster</a>
   <a href="https://github.com/rahul-sg/HondaResearchLabs_DSC180A-Eval-Systems-Of-NextGen-LLMs" class="custom-button">Code</a>
   <a href="https://github.com/ZachUCSD/Iterative-Refinement-of-LLM-as-Judge-Framework-Website" class="custom-button">Website Code</a>
