@@ -50,9 +50,9 @@ font-size:13px; line-height:2; z-index:999;">
 </style>
 
 # Motivation
-Large language models (LLMs) have become commonplace in everyday life. With their versatility in handling information and the sheer volume of content they produce, monitoring output quality has become a critical challenge. LLMs are simultaneously powerful and unreliable prone to hallucinations, omissions, and factual errors a contradiction that motivates our work. As a tool is only as useful as our ability to evaluate it, so we set out to build a robust LLM judge framework.
+Large language models (LLMs) have become commonplace in everyday life. With their versatility in handling information and the sheer volume of content they produce, monitoring output quality has become a critical challenge. LLMs are simultaneously powerful and unreliable being prone to hallucinations, omissions, and factual errors. Our solution to this issue is a robust evaluation framework.
 
-Human evaluation is the highest quality method for evaluation LLM output however, this method is entirely unscalable and extremely costly. Traditional NLP metrics like ROUGE, BLEU, and BERTScore reward surface-level similarity while missing qualities like factual grounding, semantic completeness, and practical usefulness making them poor proxies for human judgment. Our solution: an iterative evaluation system that combines LLM-as-judge scoring with human-guided domain knowledge and task-based NLP metrics.
+Human evaluation is the highest quality method for evaluating LLM output however, this method is entirely unscalable and extremely costly. Traditional NLP metrics like ROUGE, BLEU, and BERTScore reward surface-level similarity while missing qualities like factual grounding, semantic completeness, and practical usefulness making them poor proxies for human judgment. Our solution: an iterative evaluation system that combines LLM-as-judge scoring with human-guided domain knowledge and a dynamic rubric of metrics.
 
 Our primary stakeholders are researchers and educators who need reliable, interpretable evaluations of AI-generated summaries, and developers building LLM pipelines who require scalable quality checks without manual review. We study this through lecture slide summarization a controllable, academically relevant domain that lets us isolate where evaluation strategies succeed or fail.
 
@@ -86,13 +86,13 @@ The first step is a Domain Decision module, which classifies the input and retri
   style="border:none; border-radius:12px; display:block;"
   onload="this.style.height=this.contentDocument.body.scrollHeight+'px'">
 </iframe>
-The evaluation system combines rubric-based judging with deterministic signals derived from the lecture slides. The LLM judge evaluates summaries across five qualitative dimensions: coverage, faithfulness, organization, clarity, and style. Alongside the rubric, the pipeline computes deterministic signals including length error, section coverage, glossary recall, and suspected hallucination rate.
+The evaluation system combines rubric-based judging with deterministic signals derived from the lecture slides. The LLM judge evaluates summaries across five qualitative dimensions using a 0-5 scale: coverage, faithfulness, organization, clarity, and style. Alongside the rubric, the pipeline computes deterministic signals including length error, section coverage, glossary recall, and suspected hallucination rate.
 
 These signals are blended into two complementary scores. A rubric-based comprehensive score (C) captures qualitative judgment, while a manual weighted baseline score (M) incorporates structural signals and applies an exponential hallucination penalty. These components are combined into a raw quality score.
 
 To reduce the impact of unsupported content, the system applies a domain-aware damping factor based on the hallucination rate. This produces a risk-adjusted score, which becomes the final stored evaluation score.
 
-#### Diagnostics Logging
+### 3. Diagnostics Logging
 
 The pipeline logs detailed evaluation metadata for transparency and reproducibility, including:
 
@@ -112,11 +112,9 @@ Both raw quality scores and risk-adjusted scores are stored alongside the policy
 
 ---
 
-### Iterative Evaluation Pipeline
+### 4. Iterative Evaluation Pipeline
 
-The framework also includes an iterative refinement stage that improves summaries before final scoring.
-
-The pipeline begins with an initial summary and repeatedly refines it using rubric feedback and pairwise preference comparisons between candidate revisions. At each step, the system evaluates the updated summary using both rubric scores and deterministic signals.
+The stored data then is used to iteravely refine the intial summary by using rubric feedback and pairwise preference comparisons between candidate revisions. The inital LLM is reprompted and given suggestions by the judge alongside the stored results to get a new iteration of the output.
 
 A trend-aware stopping controller determines when refinement should end. The controller monitors score trajectories and classifies each iteration into categories such as pass, borderline, stalled, or max iterations, preventing both premature stopping and unnecessary refinement loops.
 
@@ -129,57 +127,17 @@ This iterative process ensures that summaries are progressively refined while ma
 
 From the initial LLM generation to the final evaluation score, the entire workflow operates as a fully automated pipeline. No manual intervention is required, allowing the framework to scale across large evaluation datasets.
 
-### Dataset
+#### Dataset
 
 Our dataset consists of lecture slides from multiple UC San Diego courses across data science, biology, and interdisciplinary STEM fields. The materials are provided as PDF slide decks spanning several academic domains.
 
-Lecture slides present unique summarization challenges. Unlike traditional articles, they are concise, visually structured, and often omit transitional language. This makes automated evaluation more difficult.
-
-We extract text while preserving structural signals such as slide boundaries and section headings. These features are used by deterministic metrics in the evaluation pipeline, including section coverage and glossary recall.
+Lecture slides present unique summarization challenges. Unlike traditional articles, they are concise, visually structured, and often omit transitional language. This makes automated evaluation more difficult. We extract the text while preserving structural signals such as slide boundaries and section headings.
 
 
 # Results
-### Example Refinement (Lecture 1)
-The first visualization demonstrates how the iterative framework improves a generated summary.  
+### Refinement (Lecture 1)
+Below is an example of the initial vs. final iteration of a summary using our framework.
 An initial summary is evaluated by the judge system, weaknesses are identified, and a revised summary is produced.
-
-<style>
-.refinement-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 30px;
-  margin-top: 20px;
-}
-
-.refinement-box {
-  border: 1px solid #d0d7de;
-  border-radius: 8px;
-  padding: 20px;
-}
-
-.refinement-box h3 {
-  margin-top: 0;
-}
-
-.highlight-structure {
-  background: #d8f5d0;
-  padding: 2px 4px;
-  border-radius: 3px;
-}
-
-.highlight-concept {
-  background: #fff3b0;
-  padding: 2px 4px;
-  border-radius: 3px;
-}
-
-.highlight-detail {
-  background: #d0e7ff;
-  padding: 2px 4px;
-  border-radius: 3px;
-}
-</style>
-
 
 <div class="refinement-grid">
 
@@ -197,7 +155,7 @@ The reporting process follows Generally Accepted Accounting Principles (GAAP), o
 
 The balance sheet reports assets, liabilities, and stockholders’ equity at a specific point in time and follows the accounting equation:
 
-**Assets = Liabilities + Stockholders’ Equity**
+Assets = Liabilities + Stockholders’ Equity
 
 </div>
 
@@ -207,35 +165,37 @@ The balance sheet reports assets, liabilities, and stockholders’ equity at a s
 <b>Refined Summary: </b>
 
 <span class="highlight-structure">
-The opening lecture of *Principles of Accounting* introduces financial accounting as both a measurement system and a communication framework—the language of business.
+The opening lecture of *Principles of Accounting*
 </span>
-Accounting translates operational activities and outcomes into structured financial information used for decision making.
+introduces financial accounting as the “language of business.”
 
 <span class="highlight-concept">
-Its two core functions are **recordkeeping**, which identifies and measures economic events, and **communication**, which reports results through standardized financial statements.
+Accounting translates operational activities and outcomes into structured financial information used for decision making.
 </span>
 
-<span class="highlight-structure">
-Financial information serves multiple stakeholders. **Investors** evaluate company performance, **creditors and suppliers** assess repayment ability, and **managers** analyze operational strategy.
+Users of accounting information include investors, creditors, suppliers, managers, employees, customers, and regulators.
+
+<span class="highlight-concept">
+For example, investors evaluate company performance, while creditors and suppliers assess a firm's ability to repay obligations.
 </span>
 
-Financial accounting captures three types of activities:  
-**financing**, **investing**, and **operating**.
+Financial accounting captures three types of activities: financing, investing, and operating.
 
-These activities are summarized in four core financial statements:  
-**balance sheet**, **income statement**, **statement of stockholders’ equity**, and **statement of cash flows**.
+These activities are summarized in four financial statements: the balance sheet, income statement, statement of stockholders’ equity, and statement of cash flows.
+
+Reporting follows Generally Accepted Accounting Principles (GAAP), established by the Financial Accounting Standards Board (FASB) under oversight of the Securities and Exchange Commission (SEC).
 
 <span class="highlight-detail">
-Reporting follows **Generally Accepted Accounting Principles (GAAP)** established by the **Financial Accounting Standards Board (FASB)** under oversight of the **Securities and Exchange Commission (SEC)**.
+Public companies communicate this information through regulatory filings such as 10-K annual reports, 10-Q quarterly reports, and 8-K disclosures for major events.
 </span>
 
-Public companies submit **10-K**, **10-Q**, and **8-K** filings, while international standards are issued through **IFRS**.
-
-The lecture emphasizes the balance sheet, which reports a firm’s financial position at a specific date and follows:
-
-<span class="highlight-concept">
-**Assets = Liabilities + Stockholders’ Equity**
+<span class="highlight-detail">
+International reporting standards are provided through the International Financial Reporting Standards (IFRS).
 </span>
+
+The balance sheet reports a firm's financial position at a specific point in time and follows:
+
+Assets = Liabilities + Stockholders’ Equity
 
 </div>
 
@@ -243,9 +203,10 @@ The lecture emphasizes the balance sheet, which reports a firm’s financial pos
 
 <p style="margin-top:15px; font-size:14px; color:#57606a;">
 Highlighted text indicates improvements introduced during iterative refinement:
-structural clarity (green), conceptual explanations (yellow), and additional technical detail (blue).
+structural framing (green), expanded conceptual explanation (yellow), and additional technical detail (blue).
 </p>
 
+From the highlighted sections it is noticeable that 
 
 The second visualization shows how summaries evolve across refinement iterations for each lecture.
 
