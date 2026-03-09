@@ -87,9 +87,9 @@ The first step is a Domain Decision module, which classifies the input and retri
   style="border:none; border-radius:12px;">
 </iframe>
 
-The final score combines a domain-aware rubric evaluation with a deterministic metric blend derived from the lecture slides. The rubric measures qualitative dimensions such as coverage, faithfulness, organization, clarity, and style on a 1-5 scale, while the metric component captures structural signals like section coverage.
+The final score combines a **domain-aware rubric evaluation** with a complementary **baseline metric blend** derived from the lecture slides. The rubric evaluates qualitative dimensions such as coverage, faithfulness, organization, clarity, and style, while the baseline metric captures structural signals like section coverage and overall response quality.
 
-A hallucination signal estimates how often the summary introduces statements unsupported by the slides. This signal reduces the final score, ensuring that summaries are rewarded for remaining accurate and grounded in the source material.
+These signals are first merged into a **raw quality score**, which is then adjusted using a **hallucination-aware damping factor**. The hallucination signal estimates how often the summary introduces statements unsupported by the slides, and reduces the score accordingly. This risk adjustment ensures that summaries are rewarded for remaining **accurate and grounded in the source material**.
 
 #### Diagnostics Logging
 
