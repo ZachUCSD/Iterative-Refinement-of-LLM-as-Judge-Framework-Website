@@ -192,7 +192,12 @@ Iterations continue until the system detects that additional revisions are unlik
 From the initial LLM generation to the final evaluation score, the entire workflow operates as a fully automated pipeline. No manual intervention is required, allowing the framework to scale across large evaluation datasets.
 
 ### Dataset
-Our dataset consists of lecture slides from multiple UC San Diego courses they are aquired from UCSD courses spanning data science, biology, and interdisciplinary STEM, provided as PDF slide decks spanning multiple academic domains including business, humanities, and mathematics.. Unlike traditional articles, lecture slides present unique summarization challenges they are concise, visually structured, and omit transitional language, making automated evaluation non-trivial. We extract text while preserving structural cues like slide boundaries and section headings, which feed directly into our deterministic metrics such as section coverage and glossary recall.
+
+Our dataset consists of lecture slides from multiple UC San Diego courses across data science, biology, and interdisciplinary STEM fields. The materials are provided as PDF slide decks spanning several academic domains.
+
+Lecture slides present unique summarization challenges. Unlike traditional articles, they are concise, visually structured, and often omit transitional language. This makes automated evaluation more difficult.
+
+We extract text while preserving structural signals such as slide boundaries and section headings. These features are used by deterministic metrics in the evaluation pipeline, including section coverage and glossary recall.
 
 
 # Results
