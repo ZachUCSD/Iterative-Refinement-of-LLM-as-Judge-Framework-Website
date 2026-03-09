@@ -139,71 +139,148 @@ Lecture slides present unique summarization challenges. Unlike traditional artic
 Below is an example of the initial vs. final iteration of a summary using our framework.
 An initial summary is evaluated by the judge system, weaknesses are identified, and a revised summary is produced.
 
+<style>
+.refinement-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 30px;
+  margin-top: 20px;
+}
+
+.refinement-box {
+  border: 1px solid #d0d7de;
+  border-radius: 8px;
+  padding: 20px;
+}
+
+.refinement-box h3 {
+  margin-top: 0;
+}
+
+.highlight-structure {
+  background: #d8f5d0;
+  padding: 2px 4px;
+  border-radius: 3px;
+}
+
+.highlight-concept {
+  background: #fff3b0;
+  padding: 2px 4px;
+  border-radius: 3px;
+}
+
+.highlight-detail {
+  background: #d0e7ff;
+  padding: 2px 4px;
+  border-radius: 3px;
+}
+</style>
+
+
 <div class="refinement-grid">
 
 <div class="refinement-box">
 
-<b>Initial Summary: </b>
+<b>Initial Summary:</b>
 
+<p>
 This lecture introduces the foundational concepts of financial accounting, emphasizing its role as the “language of business.” Accounting communicates a company’s financial story by identifying, measuring, and recording economic events and reporting them to decision makers.
+</p>
 
+<p>
 Users of accounting information include investors, creditors, suppliers, managers, employees, customers, and regulators. These stakeholders use financial information to evaluate company performance and financial stability.
+</p>
 
+<p>
 Financial accounting focuses on three main activities—financing, investing, and operating—which are summarized in four financial statements: the balance sheet, income statement, statement of stockholders’ equity, and statement of cash flows.
+</p>
 
+<p>
 The reporting process follows Generally Accepted Accounting Principles (GAAP), overseen by the SEC and implemented by the Financial Accounting Standards Board (FASB), with IFRS providing international alignment.
+</p>
 
+<p>
 The balance sheet reports assets, liabilities, and stockholders’ equity at a specific point in time and follows the accounting equation:
+</p>
 
+<p>
 Assets = Liabilities + Stockholders’ Equity
+</p>
 
 </div>
 
 
 <div class="refinement-box">
 
-<b>Refined Summary: </b>
+<b>Refined Summary:</b>
 
+<p>
 <span class="highlight-structure">
-The opening lecture of *Principles of Accounting*
+The opening lecture of <i>Principles of Accounting</i>
 </span>
 introduces financial accounting as the “language of business.”
+</p>
 
+<p>
 <span class="highlight-concept">
 Accounting translates operational activities and outcomes into structured financial information used for decision making.
 </span>
+</p>
 
+<p>
 Users of accounting information include investors, creditors, suppliers, managers, employees, customers, and regulators.
+</p>
 
+<p>
 <span class="highlight-concept">
 For example, investors evaluate company performance, while creditors and suppliers assess a firm's ability to repay obligations.
 </span>
+</p>
 
+<p>
 Financial accounting captures three types of activities: financing, investing, and operating.
+</p>
 
+<p>
 These activities are summarized in four financial statements: the balance sheet, income statement, statement of stockholders’ equity, and statement of cash flows.
+</p>
 
+<p>
 Reporting follows Generally Accepted Accounting Principles (GAAP), established by the Financial Accounting Standards Board (FASB) under oversight of the Securities and Exchange Commission (SEC).
+</p>
 
+<p>
 <span class="highlight-detail">
 Public companies communicate this information through regulatory filings such as 10-K annual reports, 10-Q quarterly reports, and 8-K disclosures for major events.
 </span>
+</p>
 
+<p>
 <span class="highlight-detail">
 International reporting standards are provided through the International Financial Reporting Standards (IFRS).
 </span>
+</p>
 
+<p>
 The balance sheet reports a firm's financial position at a specific point in time and follows:
+</p>
 
+<p>
 Assets = Liabilities + Stockholders’ Equity
+</p>
 
 </div>
 
 </div>
+
 
 <p style="margin-top:15px; font-size:14px; color:#57606a;">
 Highlighted text indicates improvements introduced during iterative refinement:
 structural framing (green), expanded conceptual explanation (yellow), and additional technical detail (blue).
+</p>
+
+<p style="margin-top:10px; font-size:14px; color:#57606a;">
+From the highlighted sections it is noticeable that the refinement primarily targets the organization of the summary by restructuring information for better readability. The refined summary also includes additional technical details that expand on topics introduced in the initial summary but not fully explained.
 </p>
 
 From the highlighted sections it is noticeable that the refinement primarily improves the organization of the summary by restructuring information for greater clarity and readability. The refined version also introduces additional technical details that expand on topics mentioned in the initial summary but not fully explained.
