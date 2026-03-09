@@ -64,7 +64,7 @@ Our primary stakeholders are researchers and educators who need reliable, interp
   style="border:none; border-radius:12px;">
 </iframe>
 
-Our project introduces an automated evaluation pipeline for Large Language Model (LLM) outputs. The system evaluates generated summaries using structured metrics, domain-aware reasoning, and iterative refinement. Unlike traditional static evaluation systems that judge a single response, our framework continuously analyzes and refines outputs until they begin to plateu.
+Our project introduces an automated evaluation pipeline for Large Language Model (LLM) outputs. The system evaluates generated summaries using structured metrics, domain-aware reasoning, and iterative refinement. Unlike traditional static evaluation systems that judge a single response, our framework continuously analyzes and refines outputs until they begin to plateau. The goal of the system is not to replace summarization models but to provide a scalable framework for evaluating and refining their outputs.
 
 ### 1. Initial Generation
 
@@ -192,7 +192,7 @@ Iterations continue until the system detects that additional revisions are unlik
 From the initial LLM generation to the final evaluation score, the entire workflow operates as a fully automated pipeline. No manual intervention is required, allowing the framework to scale across large evaluation datasets.
 
 ### Dataset
-Our dataset consists of lecture slides from multiple UC San Diego courses they are aquired from courses we have personally taken, spanning data science, biology, and interdisciplinary STEM, provided in PDF format with structured content like bullet points, definitions, and equations. Unlike traditional articles, lecture slides present unique summarization challenges they are concise, visually structured, and omit transitional language, making automated evaluation non-trivial. We extract text while preserving structural cues like slide boundaries and section headings, which feed directly into our deterministic metrics such as section coverage and glossary recall.
+Our dataset consists of lecture slides from multiple UC San Diego courses they are aquired from UCSD courses spanning data science, biology, and interdisciplinary STEM, provided as PDF slide decks spanning multiple academic domains including business, humanities, and mathematics.. Unlike traditional articles, lecture slides present unique summarization challenges they are concise, visually structured, and omit transitional language, making automated evaluation non-trivial. We extract text while preserving structural cues like slide boundaries and section headings, which feed directly into our deterministic metrics such as section coverage and glossary recall.
 
 
 # Results
@@ -325,7 +325,7 @@ Although scores occasionally fluctuated between iterations, the stopping mechani
 
 Our scope is limited as our framework evaluates summaries; it does not improve the underlying summarization model. Gains in output quality come entirely from iterative re-prompting within the evaluation loop, not from model fine-tuning.
 
-As for limitations LLM-as-judge scoring is sensitive to prompt design and can reflect biases in the judge model. Our domain rubric bank is also bounded by the domains we defined, so performance on out-of-distribution lecture types may degrade. LLMs are also inconsistent and can vary based on which model is being used. We exclusively used GPT-5 models and thus cannot speak on the effectiveness of this project on other models. In addition LLMs produce different outputs even when given a consistent environment which creates variance in each test.
+As for limitations LLM-as-judge scoring is sensitive to prompt design and can reflect biases in the judge model. Our domain rubric bank is also bounded by the domains we defined, so performance on out-of-distribution lecture types may degrade. LLMs are also inconsistent and can vary based on which model is being used.Our experiments primarily used GPT-5 based models for both generation and evaluation. Because the same model family was used for both roles, the system may favor stylistic patterns produced by the generator. Future work should evaluate the framework using independent models to better measure generalization. In addition LLMs produce different outputs even when given a consistent environment which creates variance in each test.
 
 # Future Work
 For the future we would want to expand this framework towards other LLM models making it a much more versatile framework and increasing overall consistency. Expanding on the data bank so that the framework is more generalizable to all topics. Finally refinement of the pipeline to increase overall accuracy.
