@@ -365,7 +365,7 @@ data.forEach(lec => {
   card.className = 'card';
   card.innerHTML = `
     <div class="card-header">
-      <span class="card-title">Lecture ${lec.id} &nbsp;·&nbsp; ${lec.iters.length} iters</span>
+      <span class="card-title">Lecture ${lec.id}</span>
       <div class="card-final">
         <span class="final-score">${best.toFixed(4)}</span>
         <span class="stop-reason ${isPass ? 'stop-pass' : 'stop-stall'}">${lec.stopReason.split(':')[0].toUpperCase()}</span>
@@ -391,7 +391,7 @@ data.forEach(lec => {
     <div class="bar-track">
       <div class="bar-fill" style="width:${pct}%;background:${color};"></div>
       <span class="bar-value" style="color:${color}">${best.toFixed(4)}</span>
-      <span class="bar-iters">${lec.iters.length} ITERS</span>
+      <span class="bar-iters"></span>
     </div>
   `;
   sumContainer.appendChild(row);
