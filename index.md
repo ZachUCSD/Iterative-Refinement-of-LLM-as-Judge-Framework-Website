@@ -133,6 +133,8 @@ Our dataset consists of lecture slides from multiple UC San Diego courses across
 
 Lecture slides present unique summarization challenges. Unlike traditional articles, they are concise, visually structured, and often omit transitional language. This makes automated evaluation more difficult. We extract the text while preserving structural signals such as slide boundaries and section headings.
 
+#### What we built
+Our team implemented the iterative refinement controller, domain-aware rubric routing, hybrid scoring pipeline, dashboard reporting, and experiment framework. We reuse general-purpose LLM APIs as model backbones, but the evaluation logic, stopping controller, and reporting system are our own.
 
 # Results
 ### Refinement (Lecture 1)
