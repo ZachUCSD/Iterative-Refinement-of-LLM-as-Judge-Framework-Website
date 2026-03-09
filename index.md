@@ -86,7 +86,7 @@ The first step is a Domain Decision module, which classifies the input and retri
   style="border:none; border-radius:12px; display:block;"
   onload="this.style.height=this.contentDocument.body.scrollHeight+'px'">
 </iframe>
-The evaluation system combines rubric-based judging with deterministic signals derived from the lecture slides. The LLM judge evaluates summaries across five qualitative dimensions using a 0-5 scale: coverage, faithfulness, organization, clarity, and style. Alongside the rubric, the pipeline computes deterministic signals including length error, section coverage, glossary recall, and suspected hallucination rate.
+The evaluation system combines rubric-based judging with deterministic signals derived from the lecture slides. The LLM judge evaluates summaries across five qualitative dimensions using a 1-5 scale: coverage, faithfulness, organization, clarity, and style. Alongside the rubric, the pipeline computes deterministic signals including length error, section coverage, glossary recall, and suspected hallucination rate.
 
 These signals are blended into two complementary scores. A rubric-based comprehensive score (C) captures qualitative judgment, while a manual weighted baseline score (M) incorporates structural signals and applies an exponential hallucination penalty. These components are combined into a raw quality score.
 
