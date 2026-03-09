@@ -78,7 +78,7 @@ The Judge is the core of the evaluation system and consists of several component
 
 The first step is a Domain Decision module, which classifies the input and retrieves supporting context from a curated Data Bank. This allows the evaluation criteria to adapt based on the subject domain (for example, biology vs. data science), ensuring that the scoring rubric remains contextually relevant instead of relying on generic evaluation rules.
 
-#### Scoring Methodology
+### Scoring Methodology
 
 <iframe 
   src="scoring_pipeline.html" 
@@ -87,63 +87,44 @@ The first step is a Domain Decision module, which classifies the input and retri
   style="border:none; border-radius:12px;">
 </iframe>
 
-The final score combines a **domain-aware rubric evaluation** with a complementary **baseline metric blend** derived from the lecture slides. The rubric evaluates qualitative dimensions such as coverage, faithfulness, organization, clarity, and style, while the baseline metric captures structural signals like section coverage and overall response quality.
+The evaluation system combines **rubric-based judging with deterministic signals derived from the lecture slides**. The LLM judge evaluates summaries across five qualitative dimensions: **coverage, faithfulness, organization, clarity, and style**. Alongside the rubric, the pipeline computes deterministic signals including **length error, section coverage, glossary recall, and suspected hallucination rate**.
 
-These signals are first merged into a **raw quality score**, which is then adjusted using a **hallucination-aware damping factor**. The hallucination signal estimates how often the summary introduces statements unsupported by the slides, and reduces the score accordingly. This risk adjustment ensures that summaries are rewarded for remaining **accurate and grounded in the source material**.
+These signals are blended into two complementary scores. A **rubric-based comprehensive score (C)** captures qualitative judgment, while a **manual weighted baseline score (M)** incorporates structural signals and applies an exponential hallucination penalty. These components are combined into a **raw quality score**.
+
+To reduce the impact of unsupported content, the system applies a **domain-aware damping factor** based on the hallucination rate. This produces a **risk-adjusted score**, which becomes the final stored evaluation score.
 
 #### Diagnostics Logging
 
-The system logs detailed evaluation diagnostics in including:
+The pipeline logs detailed evaluation metadata for transparency and reproducibility, including:
 
-- refined_summary
-- signals
-- rubric
-- agreement
-- comprehensive_scoring
-- hybrid_scoring
-- leaderboard_scores
-- iteration_score_table
-- refinement_metadata
-- final_score_0to1
-- lecture_title
+- refined_summary  
+- signals  
+- rubric  
+- agreement  
+- comprehensive_scoring  
+- hybrid_scoring  
+- leaderboard_scores  
+- iteration_score_table  
+- refinement_metadata  
+- final_score_0to1  
+- lecture_title  
 
-This allows deeper inspection of scoring behavior during refinement. These metrics are processed by an Evaluation Pipeline, producing structured outputs before any qualitative scoring occurs. This approach ensures that evaluation is consistent, reproducible, and explainable rather than relying purely on subjective LLM judgment.
-
-### 3. Iterative Evaluation Pipeline
-
-The framework also incorporates an iterative evaluation stage that improves the generated summary before the final score is produced.
-
-Instead of evaluating the entire output as a single block, the system first performs **piecewise output evaluation**. The generated summary is divided into parallel sub-components (Piecewise A/B), which are evaluated independently before being merged into a final assessment. This allows the framework to detect **localized errors or missing information** that whole-output scoring would otherwise miss.
-
-After the piecewise evaluation step, the system performs a deeper scoring stage using **Chain-of-Density prompting**. Chain-of-Density refinement increases the informational density of the summary while maintaining the same overall length. Missing concepts are added and redundant phrasing is removed, improving semantic coverage without expanding the summary.
-
-This stage ensures that:
-
-- metric values are supported by evidence  
-- scoring decisions are grounded in the source material  
-- compression improves coverage while preserving fidelity  
-
-Evaluation is guided by a **lever-based rubric system** that adjusts five quality dimensions on a **1–5 scale**:
-
-- coverage  
-- faithfulness  
-- organization  
-- clarity  
-- style  
-
-When weaknesses are detected, targeted feedback is generated and a revised version of the summary is produced. The updated output is then re-evaluated by the Judge.
-
-This process forms an **iterative refinement loop**:
-
-1. The Judge evaluates the piecewise output  
-2. Lever scores identify weaknesses in the summary  
-3. A new prompt is constructed using targeted feedback  
-4. The model generates revised summary segments  
-5. The updated output is recombined and evaluated again  
-
-Iterations continue until the system detects that additional revisions are unlikely to improve the result. This occurs when the lever scores stabilize across consecutive iterations, indicating that the summary has reached a **quality plateau**.
+Both **raw quality scores and risk-adjusted scores** are stored alongside the policy parameters used during evaluation, enabling deeper inspection of scoring behavior.
 
 ---
+
+### Iterative Evaluation Pipeline
+
+The framework also includes an **iterative refinement stage** that improves summaries before final scoring.
+
+The pipeline begins with an initial summary and repeatedly refines it using **rubric feedback and pairwise preference comparisons** between candidate revisions. At each step, the system evaluates the updated summary using both rubric scores and deterministic signals.
+
+A **trend-aware stopping controller** determines when refinement should end. The controller monitors score trajectories and classifies each iteration into categories such as **pass, borderline, stalled, or max iterations**, preventing both premature stopping and unnecessary refinement loops.
+
+To reduce noise from a weak final rewrite, the system applies a **best-of-last-k safeguard**, selecting the highest-quality summary among the final iterations before computing the final score.
+
+This iterative process ensures that summaries are progressively refined while maintaining **faithfulness to the source material and stable evaluation behavior**.
+
 
 #### End-to-End Automation
 
